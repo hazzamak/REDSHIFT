@@ -12,7 +12,7 @@ function App() {
 
     const [data, setData]=useState([]);
     useEffect((event)=> {
-        
+        // event.preventDefault();
         console.log(data);
     }, [data])
 
