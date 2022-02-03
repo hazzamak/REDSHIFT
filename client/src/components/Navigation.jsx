@@ -1,13 +1,14 @@
-import Search from "./Search";
-import Menu from "./Menu";
+
+import InputField from "./InputField";
 
 const Navigation = ({setData}) => {
 
+
     return ( 
-      <div className="navigationWrapper">
-        <Search setData={setData}/>
-        <Menu/> 
-      </div>  
+     <div className="navigationOuter"> <div className="navigationWrapper">
+        <InputField setData={setData}/>
+      </div> 
+      </div> 
     );
 }
  
