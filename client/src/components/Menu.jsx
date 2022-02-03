@@ -3,10 +3,10 @@ import {Link} from "react-router-dom";
 const Menu = () => {
     return ( 
         <div className="menuWrapper"> 
-            <Link to="/"><div className="menuItem">General</div></Link>
-            <Link to="/biographical"><div className="menuItem">Biographical</div></Link>
-            <Link to="/associates"><div className="menuItem">Associates</div></Link>
-            <Link to="/financial"><div className="menuItem">Financial</div></Link>
+            <Link to="/overview" className="menuItem currentPage">Overview</Link>
+            <Link to="/biographical" className="menuItem">Biographical</Link>
+            <Link to="/associates" className="menuItem">Associates</Link>
+            <Link to="/financial" className="menuItem">Financial</Link>
 
         </div>
      );
