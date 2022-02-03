@@ -1,12 +1,12 @@
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Menu = () => {
     return ( 
         <div className="menuWrapper"> 
-            <Link to="/overview" className="menuItem currentPage">Overview</Link>
-            <Link to="/biographical" className="menuItem">Biographical</Link>
-            <Link to="/associates" className="menuItem">Associates</Link>
-            <Link to="/financial" className="menuItem">Financial</Link>
+            <NavLink to="/overview" className="menuItem" activeClassName="currentPage">Overview</NavLink>
+            <NavLink to="/biographical" className="menuItem">Biographical</NavLink>
+            <NavLink to="/associates" className="menuItem">Associates</NavLink>
+            <NavLink to="/financial" className="menuItem">Financial</NavLink>
 
         </div>
      );

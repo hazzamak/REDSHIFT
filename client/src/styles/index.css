@@ -1,147 +1,201 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-   
-  }
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 
-  h1,h2,h3,h4,h5,h6{
-    font-family: 'Montserrat', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat", sans-serif;
+}
 
-  p{
+h1 {
+    margin: 50px 0 30px 0;
+}
+
+p {
     margin-top: 10px;
-  }
+}
 
-  a{
+a,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
     text-decoration: none;
-  }
+}
 
-  .navigationOuter{
+.navigationOuter {
+    background-color: rgba(0, 0, 0, 0.03);
+}
 
-    background-color: rgba(0,0,0,0.03);
-
-  }
-  .navigationWrapper{
-
+.navigationWrapper {
     max-width: 1080px;
     margin: 0 auto;
     padding: 30px 0;
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-  }
-  .navigationWrapper .searchForm {
+.navigationWrapper .logo {
+    font-family: "Montserrat", sans-serif;
+    color: #ee1b24;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.navigationWrapper .searchForm {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+}
 
-    font-family: 'Montserrat', sans-serif;
-    max-width: 500px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 15px;
-    
-  }
-
-
-  .navigationWrapper .searchForm input{
-
-    font-family: 'Montserrat', sans-serif;
+.navigationWrapper .searchForm input {
+    font-family: "Montserrat", sans-serif;
     outline: none;
     border: none;
-    padding: 15px;
-    font-size: 14px;
-    background-color: rgba(0,0,0,0.1);
+    padding: 20px;
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-  }
+    min-width: 300px;
+}
 
-
-  .navigationWrapper .searchForm select{
-    font-family: 'Montserrat', sans-serif;
+.navigationWrapper .searchForm select {
+    font-family: "Montserrat", sans-serif;
     outline: none;
     border: none;
     padding: 15px;
-    font-size: 14px;
-    background-color: rgba(0,0,0,0.1);
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
     border-radius: 8px;
-  }
+    margin-left: 15px;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+    width: 200px;
+    line-height: 1;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+        no-repeat right rgba(0, 0, 0, 0.1);
+    background-position-x: 170px;
+    cursor: pointer;
+}
 
-
-  .navigationWrapper .searchForm button{
-    font-family: 'Montserrat', sans-serif;
+.navigationWrapper .searchForm button {
+    font-family: "Montserrat", sans-serif;
     outline: none;
+    font-weight: 600;
     border: none;
-    padding: 15px;
+    padding: 15px 35px;
+    margin-left: 15px;
     font-size: 14px;
-    background-color: #0B65DA;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #ee1b24;
     color: white;
     border-radius: 8px;
-  }
+    transition: 0.4s background-color ease;
+    cursor: pointer;
+}
 
-  .menuWrapper{
+.navigationWrapper .searchForm button:hover {
+    background-color: #df0f18;
+}
 
+.menuWrapper {
     display: flex;
-    margin: 30px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin: 30px 0 0 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
 
-  }
-
-  .menuWrapper .menuItem{
-
-    font-family: 'Montserrat', sans-serif;
+.menuWrapper .menuItem {
+    font-family: "Montserrat", sans-serif;
     padding: 20px;
     margin-right: 15px;
     color: black;
     transition: 0.5s background-color ease;
-    
+}
 
-  }
+.menuWrapper .menuItem:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+.active {
+    border-bottom: 5px solid #ee1b24;
+}
 
-  .menuWrapper .menuItem:hover{
-
-    background-color: rgba(0,0,0,0.06);
-    
-
-  }
-  .menuWrapper .currentPage{
-
-    border-bottom: 5px solid #0B65DA;
-
-
-  }
-
-  .mainContentWrapper{
-
+.mainContentWrapper {
     max-width: 1080px;
     margin: 0 auto;
+}
 
-  }
-
-  .mainContentWrapper .cardWrapper{
-
+.mainContentWrapper .cardWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
-  }
+}
 
-  .mainContentWrapper .cardWrapper .card{
-    font-family: 'Montserrat', sans-serif;
+.mainContentWrapper .cardWrapper .card {
+    font-family: "Montserrat", sans-serif;
     padding: 30px;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
 
-    
-  }
-
-  .resultsWrapper{
-
+.resultsWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
+}
 
-  }
+.resultsWrapper .resultCardWrapper {
+    font-family: "Montserrat", sans-serif;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: 0.3s background-color ease;
+    border-radius: 8px;
+    display: flex;
+}
 
-  .resultsWrapper .resultCardWrapper{
-    font-family: 'Montserrat', sans-serif;
-    padding: 30px;
-    background-color: rgba(0,0,0,0.05);
+.resultsWrapper .resultCardWrapper:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+}
 
-  }
+.resultsWrapper .resultCardWrapper .profileImage {
+    height: 100px;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.resultsWrapper .resultCardWrapper .profileInfo-item {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.resultsWrapper .resultCardWrapper .profileInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resultsWrapper .resultCardWrapper .profileInfo-item p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.resultsWrapper .resultCardWrapper .profileInfo-item img {
+    width: 14px;
+    opacity: 0.5;
+    margin-right: 8px;
+}
