@@ -38,6 +38,7 @@ const db = mysql.createConnection({
 //     console.log(`server is listening on ${host}: ${port}`);
 // });
 
+
 db.connect(err=>{
     if(err){
         console.log(err.message);
