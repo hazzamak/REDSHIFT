@@ -5,7 +5,7 @@ const pool = mysql.createPool({
     user: "",
     password: "",
     database: "",
-    port: "",
+    PORT: "",
 })
 
 let redshiftdb = {};

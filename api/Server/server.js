@@ -1,12 +1,12 @@
-const express = require('express');
-const app = express();
-const apiRouter = require('./routes');
+// const express = require('express');
+// const app = express();
+// const apiRouter = require('./routes');
 
-app.use('api/redshift', apiRouter)
+// app.use('api/redshift', apiRouter)
 
-app.use(express.json());
+// app.use(express.json());
 
-app.listen(3000, () => {
-    console.log("Connected on port 3000")
-})
+// app.listen(3000, () => {
+//     console.log("Connected on port 3000")
+// })
 
