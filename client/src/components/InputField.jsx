@@ -1,59 +1,53 @@
 import { useState, useEffect } from "react";
 
-
-
 const InputField = ({setData}) => {
 
-    const [choice, setChoice]= useState("name");
+  const [choice, setChoice]= useState("name");
 
-  const handleFormSelection= (event)=>{
-    
+  const handleFormSelection= () => {
     if(choice==="name"){
+      document.querySelector("#searchField").placeholder = "Forenames..."
       document.querySelector("#surnameField").style.display="block"
     } else{
       document.querySelector("#surnameField").style.display="none"
+      document.querySelector("#searchField").placeholder = "Search..."
     }
   }
 
-  useEffect(()=> {
-
-    handleFormSelection();
-  }, [choice])
-
+  useEffect(handleFormSelection, [choice])
 
   const handleSubmit = (event) => {
-
     event.preventDefault();
-    setData("hello");
+    const first = document.querySelector("#searchField").value;
+    const second = document.querySelector("#surnameField").value;
+    let query = document.querySelector("#selection").value;
+    let data = {};
+
+    if(choice==="name"){
+      data = {
+        forenames: first,
+        surname: second
+      }
+    } else{
+      data[query] = first;
+    }
+
+    setData(data);
   };
 
-
-
     return ( 
-      
         <form className="searchForm" onSubmit={(event)=> handleSubmit(event)}>
-          <input type="text" placeholder="Search..."/>
-          <input id="surnameField" type="text" placeholder="Surname"/>
-
-          <select onChange={(event) => {
-
-            setChoice(event.target.value);
-           
-            }}>
-
+          <input id="searchField" type="text" placeholder="Search..."/>
+          <input id="surnameField" type="text" placeholder="Surname..."/>
+          <select id="selection" onChange={(event) => setChoice(event.target.value)}>
             <option value="name">Name </option>
-            <option value="DOB">Date of Birth</option>
-            <option value="address">Home Address</option>
-            <option value="POB">Place of Birth</option>
+            <option value="dateOfBirth">Date of Birth</option>
+            <option value="homeAddress">Home Address</option>
+            <option value="placeOfBirth">Place of Birth</option>
+            <option value="sex">Gender</option>
           </select>
           <button type="submit" > Search </button>
-
         </form>
-        
-    
-     
-
- 
     )}
  
 export default InputField;
