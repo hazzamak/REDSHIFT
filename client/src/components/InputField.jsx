@@ -1,4 +1,24 @@
+import { useState, useEffect } from "react";
+
+
+
 const InputField = ({setData}) => {
+
+    const [choice, setChoice]= useState("name");
+
+  const handleFormSelection= (event)=>{
+    
+    if(choice==="name"){
+      document.querySelector("#surnameField").style.display="block"
+    } else{
+      document.querySelector("#surnameField").style.display="none"
+    }
+  }
+
+  useEffect(()=> {
+
+    handleFormSelection();
+  }, [choice])
 
 
   const handleSubmit = (event) => {
@@ -13,12 +33,18 @@ const InputField = ({setData}) => {
       
         <form className="searchForm" onSubmit={(event)=> handleSubmit(event)}>
           <input type="text" placeholder="Search..."/>
-          <select defaultValue={"DEFAULT"}>
-            <option value="DEFAULT" disabled hidden>Choose a filter...</option>
-            <option>Name </option>
-            <option>Date of Birth</option>
-            <option>Home Address</option>
-            <option>Place of Birth</option>
+          <input id="surnameField" type="text" placeholder="Surname"/>
+
+          <select onChange={(event) => {
+
+            setChoice(event.target.value);
+           
+            }}>
+
+            <option value="name">Name </option>
+            <option value="DOB">Date of Birth</option>
+            <option value="address">Home Address</option>
+            <option value="POB">Place of Birth</option>
           </select>
           <button type="submit" > Search </button>
 
