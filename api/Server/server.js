@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/citzens', apiRouter)
-app.listen(process.env.PORT || '3000',()=>{
+app.use('/citizens', apiRouter)
+app.listen(process.env.PORT || '3306',()=>{
     console.log("server is very much working");
 });

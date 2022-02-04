@@ -8,7 +8,7 @@ const db = mysql.createConnection({
 
 });
 
-let citzensdb = {};
+let citizendb = {};
 
 db.connect((err)=>{
     if(err){
@@ -19,11 +19,11 @@ db.connect((err)=>{
 });
 
 
-citzensdb.all = ()=>{
+citizendb.all = ()=>{
 
     return new Promise((resolve, reject)=>{
 
-        pool.query('SELECT * FROM citzens', (err, results)=>{
+        pool.query('SELECT * FROM citizen', (err, results)=>{
             if(err){
                 return reject(err);
             }
@@ -38,10 +38,10 @@ citzensdb.all = ()=>{
 
 };
 
-citzensdb.one = (id)=>{
+citizendb.one = (id)=>{
     return new Promise((resolve, reject)=>{
 
-        pool.query('SELECT * FROM citzens WHERE id =?',id, (err, results)=>{
+        pool.query('SELECT * FROM citizen WHERE citizenId =?',id, (err, results)=>{
             if(err){
                 return reject(err);
             }
@@ -55,4 +55,4 @@ citzensdb.one = (id)=>{
     });
 
 };
-module.exports = citzensdb;
+module.exports = citizendb;
