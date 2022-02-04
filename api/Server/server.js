@@ -1,12 +1,22 @@
-// const express = require('express');
-// const app = express();
-// const apiRouter = require('./routes');
+const express = require('express');
+const apiRouter = require('./routes/index.js');
 
-// app.use('api/redshift', apiRouter)
+const app = express();
 
-// app.use(express.json());
+app.use(express.json());
 
-// app.listen(3000, () => {
-//     console.log("Connected on port 3000")
-// })
+
+
+
+app.use('/citzensdb',apiRouter)
+
+app.listen(process.env.PORT || '3000', ()=>{
+    console.log(`Server is running on port: ${process.env.PORT || '3000'} `);
+});
+
+
+
+
+
+
 
