@@ -1,10 +1,10 @@
 const mysql =require('mysql2');
 
 const db = mysql.createConnection({
-    host: 'redshiftdb.cfktl8uek976.eu-west-2.rds.amazonaws.com',
-    port: '3306',
-    user: 'admin',
-    password: 'Np}annGQ9G&[KT9C'
+    host: '',
+    port: '',
+    user: '',
+    password: ''
 
 });
 
@@ -24,6 +24,24 @@ citzensdb.all = ()=>{
     return new Promise((resolve, reject)=>{
 
         pool.query('SELECT * FROM citzens', (err, results)=>{
+            if(err){
+                return reject(err);
+            }
+
+            return resolve(results);
+
+
+        });
+
+
+    });
+
+};
+
+citzensdb.one = (id)=>{
+    return new Promise((resolve, reject)=>{
+
+        pool.query('SELECT * FROM citzens WHERE id =?',id, (err, results)=>{
             if(err){
                 return reject(err);
             }
