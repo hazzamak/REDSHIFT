@@ -12,7 +12,7 @@ h3,
 h4,
 h5,
 h6,
-p{
+p {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -37,7 +37,7 @@ a:active {
 }
 
 .navigationWrapper {
-    /* max-width: 1200px; */
+    max-width: 1340px;
     margin: 0 auto;
     padding: 30px;
     display: flex;
@@ -138,22 +138,18 @@ a:active {
 .mainContentWrapper {
     max-width: 1080px;
     margin: 0 auto;
-
 }
 
-.mainContentWrapper .imageWrapper{
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  
+.mainContentWrapper .imageWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-.mainContentWrapper .imageWrapper .searchImage{
-  width: 60%;
-  
+.mainContentWrapper .imageWrapper .searchImage {
+    width: 60%;
 }
 
 .mainContentWrapper .cardWrapper {

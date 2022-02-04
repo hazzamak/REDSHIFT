@@ -18,7 +18,7 @@ const SearchPage = () => {
         {display ?
         
         <div className="imageWrapper">
-            <img className="searchImage" src={SearchImage}/>
+            <img className="searchImage" src={SearchImage} alt="Search"/>
             <p> Please provide search query...</p>
         </div>
             :
