@@ -1,0 +1,9 @@
+hello harry,
+I have realised the issue we were having:
+
+AWS RDS must use mysql2 import not mysql 2 like all the other vidoes showed
+this is why the .env would work as its what i used in the tutorial
+
+other issues:
+
+package.json: was missing the dev command
