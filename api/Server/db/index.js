@@ -1,35 +1,31 @@
 const mysql = require('mysql');
 
-const pool = mysql.createPool({
-    host: "",
-    user: "",
-    password: "",
-    database: "",
-    PORT: "",
-})
 
-let redshiftdb = {};
+const http = require("http"); // http package for createServer
+require('dotenv').config();
+const db = mysql.createPool({
+    host: process.env.HOST,
+    port: process.env.PORT,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+});
 
-redshiftdb.all = () => {
-    return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM ()()()()', (err, results) => {
+let citzensdb={};
+
+citzensdb.all = ()=>{
+
+    return new Promise((resolve, reject)=> {
+        db.query(`select * FROM citzens`,(err, results)=>{
+
             if(err){
                 return reject(err);
             }
             return resolve(results);
-        })
-    })
-}
 
-redshiftdb.one = (id) => {
-    return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM ()()()() WHERE id = ?', [id], (err, results) => {
-            if(err){
-                return reject(err);
-            }
-            return resolve(results[0]);
-        })
-    })
-}
+        });
+    });
 
-module.exports = redshiftdb;
+};
+
+module.exports = citzensdb;

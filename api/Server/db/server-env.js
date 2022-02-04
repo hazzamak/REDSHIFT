@@ -1,5 +1,5 @@
 /*
-Hello Harry,
+
 this is the env file to access the database, it
  shouldn't be pushed to GitHub for it has the conenctions details.
 Video here explaning: 
@@ -10,15 +10,10 @@ const http = require("http"); // http package for createServer
 require('dotenv').config();
 
 
+
+
 const mysql = require("mysql");
-// to enter seperate file with login details use: .config({path/filename})
 
-//process.env.PORT
-
-
-// let port = process.env.PORT;
-// let host = process.env.HOST;
-// let user = process.env.USER;
 
 const db = mysql.createConnection({
     host: process.env.HOST,
@@ -27,7 +22,7 @@ const db = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
 });
-
+console.log(db);
 // let server = http.createServer((req, res)=>{
 //     console.log('Request Registered ');
 //     res.writeHead(200, {'Content-Type':'text/plain'});
@@ -46,4 +41,19 @@ db.connect(err=>{
     }
     console.log("database connected");
 });
+
+
+
+//   async  function  getOrders() {
+//     try {
+//       let  pool =   db.connect();
+//       let  products =   pool.request().query("SELECT * from citzen");
+      
+//       console.log(products);
+//     }
+//     catch (error) {
+//       console.log(error);
+//     }
+//   }
+//   getOrders();
 
