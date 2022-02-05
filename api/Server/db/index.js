@@ -1,9 +1,10 @@
 const mysql =require('mysql2');
+const http = require('http');
 
 const db = mysql.createConnection({
-    host: '',
-    port: '',
-    user: '',
+    host: 'redshiftdb.cfktl8uek976.eu-west-2.rds.amazonaws.com',
+    port: '3306',
+    user: 'admin',
     password: ''
 
 });
@@ -41,7 +42,7 @@ citizendb.all = ()=>{
 citizendb.one = (id)=>{
     return new Promise((resolve, reject)=>{
 
-        pool.query('SELECT * FROM citizen WHERE citizenId =?',id, (err, results)=>{
+        pool.query('SELECT * FROM citizen WHERE citizenID =?',id, (err, results)=>{
             if(err){
                 return reject(err);
             }

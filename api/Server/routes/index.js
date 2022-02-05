@@ -1,10 +1,19 @@
 const express = require('express');
+const http = require('http');
+
+
+
+// const cors = require('cors');
+// likely not needed here
+// express.request(cors());
 
 const db = require('../db/index.js');
 
 const router = express.Router();
 
-router.get('/', async(req, res,next)=>{
+
+
+router.get('/getall', async(req, res,next)=>{
     try{
         let results = await db.all();
         res.json(results);

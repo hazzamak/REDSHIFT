@@ -6,4 +6,20 @@ this is why the .env would work as its what i used in the tutorial
 
 other issues:
 
-package.json: was missing the dev command
+-package.json: was missing the dev command
+
+-some typos with citizen or citizens
+-citizenId table column is non standard name, it is citizenID
+
+
+resources: 
+https://levelup.gitconnected.com/the-ultimate-guide-to-get-started-with-sequelize-orm-238588d3516e
+https://stackoverflow.com/questions/40886293/how-to-connect-node-sequelize-to-amazon-rds-mysql-with-multi-az-probably
+
+i have the same error, but in my case it's because the server is configured as http/2, and i think (?) postman doesn't support that? at least from searching around it looks like that might be the case. Anyway might not help but thought i'd add here as it's the exact same response that I see when trying to query a get on http/2 service
+
+you can only send Query requests over HTTPS, and you must include a signature in every Query request. You must use either AWS signature version 4 or signature version 2
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-nodejs.rds.html
+
+https://stackabuse.com/using-aws-rds-with-node-js-and-express-js/
