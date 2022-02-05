@@ -1,59 +1,29 @@
-const mysql =require('mysql2');
-const http = require('http');
+'use strict';
+const Sequelize = require('sequelize');
+const mysql = require('mysql');
 
-const db = mysql.createConnection({
-    host: 'redshiftdb.cfktl8uek976.eu-west-2.rds.amazonaws.com',
-    port: '3306',
-    user: 'admin',
-    password: ''
+const env = require('./env.json');
+const db={};
+
+
+const sequelize = new Sequelize(env.database,env.user, env.password,{
+host: env.host,
+port: env.port,
+logging: true,
+dialect:'mysql',
+define: {
+    timestamps: false
+},
+operatorsAliases: false,
+pool: {
+    max: 5,
+    min: 0,
+    acquire: 20000,
+    idle: 10000
+}
 
 });
-
-let citizendb = {};
-
-db.connect((err)=>{
-    if(err){
-        console.log(err.message);
-        return;
-    }
-    console.log("Database connected");
-});
-
-
-citizendb.all = ()=>{
-
-    return new Promise((resolve, reject)=>{
-
-        pool.query('SELECT * FROM citizen', (err, results)=>{
-            if(err){
-                return reject(err);
-            }
-
-            return resolve(results);
-
-
-        });
-
-
-    });
-
+module.exports = {
+    'Sequelize': Sequelize,
+    'sequelize': sequelize
 };
-
-citizendb.one = (id)=>{
-    return new Promise((resolve, reject)=>{
-
-        pool.query('SELECT * FROM citizen WHERE citizenID =?',id, (err, results)=>{
-            if(err){
-                return reject(err);
-            }
-
-            return resolve(results);
-
-
-        });
-
-
-    });
-
-};
-module.exports = citizendb;
