@@ -45,7 +45,7 @@ router.post("/citizen",function(req,res){
         //     surname:"Tyson",
         //     homeAddress:"10 KINGS DRIVE",
         //     dateOfBirth:"10-10-2020",
-        //     placeOfBirth: "MIDDLESBROUGH",
+        //     placeOfBirth: " WEST SWANINGBOROUGH UNDER ORWELL ON SEA",
         //     sex:"Male"
         // }).then(function(response){
         //     res.status(200).json({
@@ -63,14 +63,8 @@ router.post("/citizen",function(req,res){
             });
         }).catch(function(err){
             console.log(err)
-            // .then(function(response){
-            //     res.status(404).json({
-            //     status: -1,
-            //     message: "Post request rejected"
-            // Error message not working
-            // })
-        // })
-        })
+ 
+        });
     
     });
 
@@ -81,17 +75,63 @@ router.get("/getall",function(req, res){
         Citizen.findAll().then(function(citizens){
             res.status(200).json({
                 status: 1,
-                message: "All citizens in the database have been found",
+                message: "Got citizens in the database",
                 data: citizens
-            });
-        }).catch(function(error){
-            console.log("You an error:", error);
+            }).then(response =>{
+                res.status(200).json({
+                    status: 1,
+                    message: "Successful get request for all citizens"
+                })
+            })
+        }).catch(error =>{
+            res.status(500).json({
+                status: -1,
+                message: `Failed get request for all citizens`,
+                data : error
+            })
+            
         });
 });
 
 
-//Update
+//get all raw/ uses less MB
+router.get("/getall-raw",function(req, res){
 
+    sequelize.query("SELECT * FROM citizen",{
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        }).catch(error=>{
+            console.log(error);
+        });
+    })
+
+});
+
+
+
+//get by id
+
+router.get("/get/:id",function(req, res){
+
+    sequelize.query("SELECT * FROM citizen WHERE citizenID ="+ req.params.id,{
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+
+
+//Update
 router.put("/update", function(req, res){
 
     Citizen.update({
@@ -144,7 +184,7 @@ router.delete("/citizen/:id", function(req, res){
 
 
 
-    
+//find and count all coming soon
 
 
 
