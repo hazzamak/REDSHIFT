@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Insert routes here
 
-app.use('/api/citizens', apiRouter);
+app.use('/', apiRouter);
 const server = app.listen(process.env.PORT || '3300',()=>{
     console.log(`Server booted up successfully, on PORT: ${server.address().port}`);
 });

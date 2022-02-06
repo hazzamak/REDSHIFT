@@ -1,29 +1,29 @@
 'use strict';
+
+//Middleware
 const Sequelize = require('sequelize');
-const mysql = require('mysql');
 
-const env = require('./env.json');
-const db={};
+// Setting env as the connection details, env.json is in gitignore
+const env = require('./env.js');
 
+//Using sequelize to connect to the db
+const connection = new Sequelize(env.database, env.user, env.password,{
+    host: env.host,
+    port: env.port,
 
-const sequelize = new Sequelize(env.database,env.user, env.password,{
-host: env.host,
-port: env.port,
-logging: console.log,
-dialect:'mysql',
-
-define: {
-    timestamps: false
-},
-operatorsAliases: false,
-pool: {
-    min: 0,
-    acquire: 20000,
-    idle: 10000
-}
+    dialect:'mysql'
 
 });
-module.exports = {
-    'Sequelize': Sequelize,
-    'sequelize': sequelize
-};
+//Sync model, may not be needed here
+
+connection.authenticate().then(function(success){
+
+    console.log("connection to db is a success")
+}).catch(function(err){
+    console.log("we have this error: ", err);
+});
+
+// Test connection to the db
+
+// Exporting sequelize connection details 
+module.exports  = connection;
