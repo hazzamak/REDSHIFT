@@ -74,7 +74,10 @@ router.post("/citizen",function(req,res){
     
     });
 
-    router.get("/getall",function(req, res){
+
+
+//Get all
+router.get("/getall",function(req, res){
         Citizen.findAll().then(function(citizens){
             res.status(200).json({
                 status: 1,
@@ -83,8 +86,64 @@ router.post("/citizen",function(req,res){
             });
         }).catch(function(error){
             console.log("You an error:", error);
+        });
+});
+
+
+//Update
+
+router.put("/update", function(req, res){
+
+    Citizen.update({
+        forenames: req.body.forenames,
+        surname: req.body.surname,
+        homeAddress: req.body.homeAddress,
+        dateOfBirth: req.body.dateOfBirth,
+        placeOfBirth: req.body.placeOfBirth,
+        sex: req.body.sex
+    },{
+        where:{
+            citizenID: req.body.citizenID,
+        }
+    }).then(response =>{
+        res.status(200).json({
+            status: 1,
+            message:`citizen: ${req.body.citizenID} has been updated successfully`
         })
-    })
+    }).catch(error =>{
+        res.status(500).json({
+            status: -1,
+            message: `Failed to update citizen: ${req.body.citizenID}`,
+            data : error
+        })
+    });
+
+
+})
+
+//Destroy/ Delete/ Remove/ Exterminate
+
+router.delete("/citizen/:id", function(req, res){
+    Citizen.destroy({
+        where:{
+            citizenID: req.params.id
+        }
+    }).then(data=>{
+        res.status(200).json({
+            status: 1,
+            message: `Citizen: ${req.params.id} has been removed from the database`
+        });
+    }).catch(error=>{
+        res.status(500).json({
+            status: -1,
+            message: `Failed to delete citizen: ${req.params.id}`,
+            data: error
+        });
+    });
+});
+
+
+
     
 
 
