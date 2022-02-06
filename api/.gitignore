@@ -6,3 +6,6 @@
 api/.env
 api/env
 env
+env.json
+
+env.js

@@ -1,31 +1,29 @@
-const mysql = require('mysql');
+'use strict';
 
+//Middleware
+const Sequelize = require('sequelize');
 
-const http = require("http"); // http package for createServer
-require('dotenv').config();
-const db = mysql.createPool({
-    host: process.env.HOST,
-    port: process.env.PORT,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
+// Setting env as the connection details, env.json is in gitignore
+const env = require('./env.js');
+
+//Using sequelize to connect to the db
+const connection = new Sequelize(env.database, env.user, env.password,{
+    host: env.host,
+    port: env.port,
+
+    dialect:'mysql'
+
+});
+//Sync model, may not be needed here
+
+connection.authenticate().then(function(success){
+
+    console.log("connection to db is a success")
+}).catch(function(err){
+    console.log("we have this error: ", err);
 });
 
-let citzensdb={};
+// Test connection to the db
 
-citzensdb.all = ()=>{
-
-    return new Promise((resolve, reject)=> {
-        db.query(`select * FROM citzens`,(err, results)=>{
-
-            if(err){
-                return reject(err);
-            }
-            return resolve(results);
-
-        });
-    });
-
-};
-
-module.exports = citzensdb;
+// Exporting sequelize connection details 
+module.exports  = connection;

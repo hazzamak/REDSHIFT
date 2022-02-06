@@ -1,22 +1,25 @@
 const express = require('express');
-const apiRouter = require('./routes/index.js');
+const apiRouter = require('./routes');
+const cors=require("cors");
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
 
+// app.use((req, res, next) => {
+//     console.log("middleware created");
+//     next();
+// })
 
 
+// Insert routes here
 
-app.use('/citzensdb',apiRouter)
-
-app.listen(process.env.PORT || '3000', ()=>{
-    console.log(`Server is running on port: ${process.env.PORT || '3000'} `);
+app.use('/', apiRouter);
+const server = app.listen(process.env.PORT || '3300',()=>{
+    console.log(`Server booted up successfully, on PORT: ${server.address().port}`);
 });
-
-
-
-
 
 
 

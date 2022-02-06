@@ -1,13 +1,23 @@
 {
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon server/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
   "dependencies": {
-    "type": "module",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15"
-
-  },
-  "scripts": {
-    "dev": "npx nodemon server/server.js -w server"
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.15.0"
   }
 }
