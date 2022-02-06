@@ -29,7 +29,9 @@ sequelize.authenticate().then(function(success){
 }).catch(function(err){
     console.log("we have this error: ", err);
 });
-const Citizen = sequelize.define("../model/citizens.js");
+
+//error in this
+// const Citizen = sequelize.define("../model/citizens.js");
 
 router.post("/citizen",function(req,res){
 
@@ -72,45 +74,60 @@ router.post("/citizen",function(req,res){
     
     });
 
-//To confirm the database is connected
+    router.get("/getall",function(req, res){
+        Citizen.findAll().then(function(citizens){
+            res.status(200).json({
+                status: 1,
+                message: "All citizens in the database have been found",
+                data: citizens
+            });
+        }).catch(function(error){
+            console.log("You an error:", error);
+        })
+    })
+    
+
+
 
 //Sync connection:
 sequelize.sync();
-// var Citizen = sequelize.define("citizen",{
-//     citizenID:{
-//         type: Sequelize.INTEGER,
-//         primaryKey: true,
-//         allowNull: false,
-        
-//         autoIncrement: true
-        
-//     },
-//     forenames:{
-//         type: Sequelize.STRING
-//        // defaultValue: "Unkown"
-//     },
-//     surname:{
-//         type: Sequelize.STRING
-//     },
-//     homeAddress:{
-//         type: Sequelize.STRING
-//     },
-//     dateOfBirth:{
-//         type: Sequelize.STRING,
-        
-//     },
-//     placeOfBirth:{
-//         type: Sequelize.STRING
-//     },
-//     sex:{
-//         type: Sequelize.STRING
-//     }},{
-//         modelName: "Citizen",
-//         timestamps: false,
-//         freezeTableName: true
 
 
-// });
+var Citizen = sequelize.define("citizen",{
+    citizenID:{
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        
+        autoIncrement: true
+        
+    },
+    forenames:{
+        type: Sequelize.STRING
+       // defaultValue: "Unkown"
+    },
+    surname:{
+        type: Sequelize.STRING
+    },
+    homeAddress:{
+        type: Sequelize.STRING
+    },
+    dateOfBirth:{
+        type: Sequelize.STRING,
+        
+    },
+    placeOfBirth:{
+        type: Sequelize.STRING
+    },
+    sex:{
+        type: Sequelize.STRING
+    }},{
+        modelName: "Citizen",
+        timestamps: false,
+        freezeTableName: true
+
+
+});
 
 //Fix to error: TypeError: Router.use() requires a middleware function but got a Object
 module.exports = router;
