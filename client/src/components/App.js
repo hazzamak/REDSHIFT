@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 
 //component imports
 import Navigation from "./Navigation";
@@ -12,13 +11,13 @@ import SearchPage from "./pages/SearchPage";
 
 function App() {
     const [query, setQuery] = useState({});
-   
+
     return (
         <div className="App">
             <BrowserRouter>
                 <Navigation setQuery={setQuery} />
                 <Routes>
-                    <Route index element={<SearchPage query={query}/>} />
+                    <Route index element={<SearchPage query={query} />} />
                     <Route
                         path="/biographical"
                         element={<BiographicalPage />}
