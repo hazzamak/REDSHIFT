@@ -10,16 +10,4 @@ const odersController = require('../controller');
 
 router.get("/", ordersController.orders_get_all );
 
-router.get('/', async (req, res, next) => {
-try{
-    let results = await db.all();
-    res.json(results);
-    
-} catch(e){
-    console.log(e);
-    res.sendStatus(500);
-}
-
-});
-
 module.exports = router;
