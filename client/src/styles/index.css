@@ -116,7 +116,6 @@ a:active {
 
 .menuWrapper {
     display: flex;
-    margin: 30px 0 0 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -137,7 +136,7 @@ a:active {
 
 .mainContentWrapper {
     max-width: 1080px;
-    margin: 0 auto;
+    margin: 70px auto 0;
 }
 
 .mainContentWrapper .imageWrapper {
@@ -158,11 +157,48 @@ a:active {
     gap: 25px;
 }
 
+.mainContentWrapper .paginationWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 70px 0;
+}
+
+.mainContentWrapper .paginationWrapper button {
+    background-color: rgba(0, 0, 0, 0.05);
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3s background-color ease, 0.2s color ease;
+}
+
+.mainContentWrapper .paginationWrapper .active {
+    background-color: #ee1b24;
+    color: white;
+}
+
+.mainContentWrapper .paginationWrapper button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.8);
+}
+
 .mainContentWrapper .cardWrapper .card {
     font-family: "Montserrat", sans-serif;
     padding: 30px;
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 8px;
+}
+
+.mainContentWrapper .searchResultsHeader {
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .resultsWrapper {
