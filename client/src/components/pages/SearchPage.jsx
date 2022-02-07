@@ -2,7 +2,7 @@ import SearchResultCard from "../SearchResultCard";
 import SearchImage from "../../assets/SearchImage.jpg";
 import {useState, useEffect} from "react";
 
-const SearchPage = () => {
+const SearchPage = ({data}) => {
 
     const[display, setDisplay] =useState(true);
     const handleDisplay=()=> {
@@ -23,12 +23,9 @@ const SearchPage = () => {
         </div>
             :
             <div className="resultsWrapper">
-            <SearchResultCard/>
-            <SearchResultCard/>
-            <SearchResultCard/>
-            <SearchResultCard/>
-            <SearchResultCard/>
-            <SearchResultCard/>
+                {data.map(person=> {
+                    return <SearchResultCard data={person}/>
+                })}
             
         </div>
 

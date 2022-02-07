@@ -158,10 +158,10 @@ router.get("/get/id",function(req, res){
 
 //===================================================
 //get by id
-router.get("/get/name",function(req, res){
+router.get("/get/name/:forenames/:surname",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
-    console.log(req.body);
-    sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.body.forenames+"' AND surname = '"+req.body.surname+"'",{
+    console.log(req.params);
+    sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
 
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{

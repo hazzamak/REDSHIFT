@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 //component imports
 import Navigation from "./Navigation";
@@ -10,20 +11,24 @@ import FinancialPage from "./pages/FinancialPage";
 import SearchPage from "./pages/SearchPage";
 
 function App() {
-    const [data, setData] = useState({});
-    useEffect(
-        (event) => {
-            console.log(data);
-        },
-        [data]
-    );
+    const [query, setQuery] = useState({});
+    const [data, setData] = useState([]);
+    
+    useEffect((event) => {
+        console.log(query);
+        axios.get(`http://localhost:3300/get/name/${query.forenames}/${query.surname}`)
+             .then(response => setData(response.data.data))
+             .catch(error => console.log(error));
+        },[query]);
+        
+        console.log(data)
 
     return (
         <div className="App">
             <BrowserRouter>
-                <Navigation setData={setData} />
+                <Navigation setQuery={setQuery} />
                 <Routes>
-                    <Route index element={<SearchPage />} />
+                    <Route index element={<SearchPage data={data}/>} />
                     <Route
                         path="/biographical"
                         element={<BiographicalPage />}

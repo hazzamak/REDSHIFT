@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const InputField = ({setData}) => {
+const InputField = ({setQuery}) => {
 
   const [choice, setChoice]= useState("name");
 
@@ -29,10 +29,13 @@ const InputField = ({setData}) => {
         surname: second
       }
     } else{
-      data[query] = first;
+      data = {
+        column: query,
+        data: first
+      }
     }
 
-    setData(data);
+    setQuery(data);
   };
 
     return ( 
