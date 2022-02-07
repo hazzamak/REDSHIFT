@@ -1,9 +1,12 @@
 'use strict';
+const { Router } = require('express');
+const sequelize = require('sequelize');
 //===================================================
 //controller index must be set up 
 const db = require('../db');
+const citizen = require(path.join ("../model/citizens.js")(sequelize, Sequelize.DataTypes));
 
-exports.citizen_getbyid = router.get("/get/id",function(req, res){
+exports.citizen_getbyid = req, res => {
     //Using a CRUD query here is the simplest way to get by id
     sequelize.query("SELECT * FROM citizen WHERE citizenID = '"+ req.body.id +"'",{
         type: sequelize.QueryTypes.SELECT
@@ -16,9 +19,9 @@ exports.citizen_getbyid = router.get("/get/id",function(req, res){
         }).catch(error=>{
             console.log(error);
         });
-});
+};
 
-exports.citizen_getbyname = router.get("/get/name/:forenames/:surname",function(req, res){
+exports.citizen_getbyname = req, res => {
         //Using a CRUD query here is the simplest way to get by id
         console.log(req.params);
         sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
@@ -33,8 +36,8 @@ exports.citizen_getbyname = router.get("/get/name/:forenames/:surname",function(
             }).catch(error=>{
                 console.log(error);
             });
-});
-exports.citizen_getother = router.get("/get/other/:column/:data",function(req, res){
+};
+exports.citizen_getother = req, res => {
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.params);
     sequelize.query("SELECT * FROM citizen WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
@@ -49,8 +52,8 @@ exports.citizen_getother = router.get("/get/other/:column/:data",function(req, r
         }).catch(error=>{
             console.log(error);
         });
-});
-exports.citizen_update = router.put("/update", function(req, res){
+};
+exports.citizen_update = req, res => {
 
         Citizen.update({
             forenames: req.body.forenames,
@@ -77,8 +80,8 @@ exports.citizen_update = router.put("/update", function(req, res){
         });
     
     
-})
-exports.citizen_delete = router.delete("/citizen/:id", function(req, res){
+};
+exports.citizen_delete = req, res => {
     Citizen.destroy({
         where:{
             citizenID: req.params.id
@@ -95,8 +98,8 @@ exports.citizen_delete = router.delete("/citizen/:id", function(req, res){
             data: error
         });
     });
-});
-exports.citizen_getallraw = router.get("/getall/raw",function(req, res){
+};
+exports.citizen_getallraw = req, res => {
     
     sequelize.query("SELECT * FROM citizen",{
         type: sequelize.QueryTypes.SELECT
@@ -111,4 +114,41 @@ exports.citizen_getallraw = router.get("/getall/raw",function(req, res){
             console.log(error);
     })
 
-});
+};
+exports.citizen_getall = req, res => {
+    Citizen.findAll().then(function(citizens){
+        res.status(200).json({
+            status: 1,
+            message: "Got citizens in the database",
+            data: citizens
+        }).then(response =>{
+            res.status(200).json({
+                status: 1,
+                message: "Successful get request for all citizens"
+            })
+        })
+    }).catch(error =>{
+        res.status(500).json({
+            status: -1,
+            message: `Failed get request for all citizens`,
+            data : error
+        })
+        
+    })
+};
+exports.citizen_create = req,res => {
+
+    console.log(req.body); 
+        Citizen.create(req.body).then(function(response){
+            res.status(200).json({
+                status : 1,
+                message: "New citizen identity created"
+            });
+        }).catch(function(err){
+            console.log(err)
+ 
+        });
+    
+};
+
+exports.citizen 
