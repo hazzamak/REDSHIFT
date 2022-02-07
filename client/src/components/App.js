@@ -15,8 +15,14 @@ function App() {
     const [data, setData] = useState([]);
     
     useEffect((event) => {
-        console.log(query);
-        axios.get(`http://localhost:3300/get/name/${query.forenames}/${query.surname}`)
+        let url="";
+        if (query.column===undefined) {
+            url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
+
+        }else{
+            url=`http://localhost:3300/get/other/${query.column}/${query.data}`
+        }
+        axios.get(url)
              .then(response => setData(response.data.data))
              .catch(error => console.log(error));
         },[query]);

@@ -47,7 +47,6 @@ const InputField = ({setQuery}) => {
             <option value="dateOfBirth">Date of Birth</option>
             <option value="homeAddress">Home Address</option>
             <option value="placeOfBirth">Place of Birth</option>
-            <option value="sex">Gender</option>
           </select>
           <button type="submit" > Search </button>
         </form>

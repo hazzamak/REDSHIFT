@@ -23,9 +23,9 @@ const SearchPage = ({data}) => {
         </div>
             :
             <div className="resultsWrapper">
-                {data.map(person=> {
-                    return <SearchResultCard data={person}/>
-                })}
+                {data.map((person, index)=> {
+                    return <SearchResultCard key={index} data={person}/> 
+            })}
             
         </div>
 

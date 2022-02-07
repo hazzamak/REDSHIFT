@@ -176,10 +176,10 @@ router.get("/get/name/:forenames/:surname",function(req, res){
     });
 //===================================================
 
-router.get("/get/other",function(req, res){
+router.get("/get/other/:column/:data",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
-    console.log(req.body);
-    sequelize.query("SELECT * FROM citizen WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
+    console.log(req.params);
+    sequelize.query("SELECT * FROM citizen WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
 
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
