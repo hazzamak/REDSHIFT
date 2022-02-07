@@ -1,9 +1,12 @@
 'use strict';
+//===================================================
 //Middleware
 const Sequelize = require("sequelize"); // Sequelize is not an object, its about the details of the connection to the db
 
+//===================================================
 
-//Create model => first way to create models in sequelize
+//===================================================
+//Creating model and exporting it, this data matches the data in the mysql database
 
 module.exports =function(sequelize, DataTypes){
 return Citizen = sequelize.define("citizen",{
@@ -38,9 +41,7 @@ return Citizen = sequelize.define("citizen",{
         modelName: "Citizen",
         timestamps: false,
         freezeTableName: true,
-        
-        
-
 
 });
 }
+//===================================================

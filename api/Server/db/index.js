@@ -1,5 +1,7 @@
 'use strict';
 
+//Nothing here is being used in the main program at the moment
+// Needs to be set up to export the sequelize connection below so it can be called in other files rather than being declared each time
 //Middleware
 const Sequelize = require('sequelize');
 
@@ -27,3 +29,7 @@ connection.authenticate().then(function(success){
 
 // Exporting sequelize connection details 
 module.exports  = connection;
+
+
+//===================================================
+//Nothing here is being used in the main program at the moment

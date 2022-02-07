@@ -23,3 +23,27 @@ you can only send Query requests over HTTPS, and you must include a signature in
 https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-nodejs.rds.html
 
 https://stackabuse.com/using-aws-rds-with-node-js-and-express-js/
+
+
+
+
+========================
+To do:
+
+Separate the routes folder into controller
+
+Fix model folder to export correctly and have other indexs import correctly
+
+In ./db index should be set up to add connection details to export, so each page can import it
+
+/getall in routes is broken
+
+Ask front-end what routes and http requests they want setting up.
+
+Tidy up code  
+-check variable and file names meet convention
+
+Prepare for presentation 
+
+
+========================
