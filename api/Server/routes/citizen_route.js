@@ -12,7 +12,7 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
     
 });
 
-router.get("/citizenget/id", citizenController.citizen_getbyid);
+router.get("/citizenget/:id", citizenController.citizen_getbyid);
 
 router.get("/citizenget/name/:forenames/:surname", citizenController.citizen_getbyname);
 

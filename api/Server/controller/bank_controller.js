@@ -4,14 +4,15 @@
 const db = require('../db');
 const citizen = require(path.join('../model/')(sequelize, Sequelize.DataTypes));
 
-exports.bank_getbyid = req, res => {
+exports.bank_getbydateOfBirth = req, res => {
     //Using a CRUD query here is the simplest way to get by id
-    sequelize.query("SELECT * FROM bank_tables WHERE bankID = '"+ req.body.id +"'",{
+    sequelize.query("SELECT * FROM bank_tables WHERE dateOfBirth = '"+ req.body.dateOfBirth +"'",{
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
             message: "Bank found",
+            
             data: response
         });
         }).catch(error=>{
@@ -19,38 +20,6 @@ exports.bank_getbyid = req, res => {
         });
 };
 
-exports.bank_getbyname = req, res => {
-        //Using a CRUD query here is the simplest way to get by id
-        console.log(req.params);
-        sequelize.query("SELECT * FROM bank_tables WHERE dateOfBirth = '"+ req.params.dateOfBirth,{
-    
-            type: sequelize.QueryTypes.SELECT
-        }).then(response=>{
-            res.status(200).json({
-                status: 1,
-                message: "Bank found",
-                data: response
-            });
-            }).catch(error=>{
-                console.log(error);
-            });
-};
-exports.bank_getother = req, res => {
-    //Using a CRUD query here is the simplest way to get by id
-    console.log(req.params);
-    sequelize.query("SELECT * FROM bank_tables WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
-
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Bank found",
-            data: response
-        });
-        }).catch(error=>{
-            console.log(error);
-        });
-};
 exports.bank_update = req, res => {
 
         Bank.update({
@@ -66,12 +35,12 @@ exports.bank_update = req, res => {
         }).then(response =>{
             res.status(200).json({
                 status: 1,
-                message:`bank: ${req.body.bankCardId} has been updated successfully`
+                message:`bank: ${req.body.id} has been updated successfully`
             })
         }).catch(error =>{
             res.status(500).json({
                 status: -1,
-                message: `Failed to update bank: ${req.body.bankCardId}`,
+                message: `Failed to update bank: ${req.body.id}`,
                 data : error
             })
         });
@@ -86,12 +55,12 @@ exports.bank_delete = req, res => {
     }).then(data=>{
         res.status(200).json({
             status: 1,
-            message: `Bank: ${req.params.bankCardId} has been removed from the database`
+            message: `Bank: ${req.params.id} has been removed from the database`
         });
     }).catch(error=>{
         res.status(500).json({
             status: -1,
-            message: `Failed to delete citizen: ${req.params.bankCardId}`,
+            message: `Failed to delete citizen: ${req.params.id}`,
             data: error
         });
     });

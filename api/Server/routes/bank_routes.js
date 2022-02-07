@@ -12,11 +12,7 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
     
 });
 
-router.get("/bankget/id", bankController.citizen_getbyid);
-
-router.get("/bankget/name/:forenames/:surname", bankController.bank_getbyname);
-
-router.get("/bankget/other/:column/:data", bankController.bank_getother);
+router.get("/bankget/:dateOfBirth", bankController.bank_getbydateOfBirth);
 
 router.put("/bankupdate", bankController.bank_update);
 

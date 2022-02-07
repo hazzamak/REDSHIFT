@@ -69,7 +69,7 @@ exports.citizen_update = req, res => {
         }).then(response =>{
             res.status(200).json({
                 status: 1,
-                message:`citizen: ${req.body.citizenID} has been updated successfully`
+                message:`citizen: ${req.body.id} has been updated successfully`
             })
         }).catch(error =>{
             res.status(500).json({

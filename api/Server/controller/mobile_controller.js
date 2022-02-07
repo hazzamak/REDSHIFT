@@ -4,14 +4,14 @@
 const db = require('../db');
 const citizen = require(path.join('../model/')(sequelize, Sequelize.DataTypes));
 
-exports.bank_getbyid = req, res => {
+exports.mobile_getbydateOfBirth = req, res => {
     //Using a CRUD query here is the simplest way to get by id
-    sequelize.query("SELECT * FROM bank_tables WHERE bankID = '"+ req.body.id +"'",{
+    sequelize.query("SELECT * FROM mobile_table WHERE dateOfBirth = '"+ req.body.dateOfBirth +"'",{
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
-            message: "Bank found",
+            message: "Mobile found",
             data: response
         });
         }).catch(error=>{
@@ -19,91 +19,92 @@ exports.bank_getbyid = req, res => {
         });
 };
 
-exports.bank_getbyname = req, res => {
+exports.mobile_getbyname = req, res => {
         //Using a CRUD query here is the simplest way to get by id
         console.log(req.params);
-        sequelize.query("SELECT * FROM bank_tables WHERE dateOfBirth = '"+ req.params.dateOfBirth,{
+        sequelize.query("SELECT * FROM mobile_tables WHERE dateOfBirth = '"+ req.params.dateOfBirth,{
     
             type: sequelize.QueryTypes.SELECT
         }).then(response=>{
             res.status(200).json({
                 status: 1,
-                message: "Bank found",
+                message: "Mobile found",
                 data: response
             });
             }).catch(error=>{
                 console.log(error);
             });
 };
-exports.bank_getother = req, res => {
+exports.mobile_getbyphonenumber = req, res => {
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.params);
-    sequelize.query("SELECT * FROM bank_tables WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
+    sequelize.query("SELECT * FROM mobile_table WHERE " + req.params.phonenumber, {
 
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
-            message: "Bank found",
+            message: "Mobile found",
             data: response
         });
         }).catch(error=>{
             console.log(error);
         });
 };
-exports.bank_update = req, res => {
+exports.mobile_update = req, res => {
 
-        Bank.update({
-            cardNumber: req.body.cardNumber,
-            sortCode: req.body.sortCode,
-            bankAccountId: req.body.bankAccountId,
-            accountNumber: req.body.accountNumber,
-            bank: req.body.placeOfBirth
+        Mobile.update({
+            forenames: req.body.forenames,
+            surname: req.body.surname,
+            dateOfBirth: req.body.dateOfBirth,
+            address: req.body.address,
+            phoneNumber: req.body.phoneNumber,
+            network: req.body.network
         },{
             where:{
-                bankCardId: req.body.citizenID,
+                phoneNumber: req.body.phoneNumber,
             }
         }).then(response =>{
             res.status(200).json({
                 status: 1,
-                message:`bank: ${req.body.bankCardId} has been updated successfully`
+                message:`Mobile: ${req.body.id} has been updated successfully`
             })
         }).catch(error =>{
             res.status(500).json({
                 status: -1,
-                message: `Failed to update bank: ${req.body.bankCardId}`,
+                message: `Failed to update mobile: ${req.body.id}`,
                 data : error
             })
         });
     
     
 };
-exports.bank_delete = req, res => {
-    Bank.destroy({
+exports.mobile_delete = req, res => {
+    Mobile.destroy({
         where:{
-            bankCardId: req.params.bankCardId
+            bankCardId: req.params.id
         }
     }).then(data=>{
         res.status(200).json({
             status: 1,
-            message: `Bank: ${req.params.bankCardId} has been removed from the database`
+            message: `Bank: ${req.params.id} has been removed from the database`
         });
     }).catch(error=>{
         res.status(500).json({
             status: -1,
-            message: `Failed to delete citizen: ${req.params.bankCardId}`,
+            message: `Failed to delete mobile: ${req.params.id}`,
             data: error
         });
     });
 };
-exports.bank_getallraw = req, res => {
+exports.mobile_getallraw = req, res => {
     
-    sequelize.query("SELECT * FROM bank_tables",{
+    sequelize.query("SELECT * FROM mobile_table",{
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
-            message: "Bank found",
+            message: "Mobile found",
             data: response
         
         })
@@ -112,34 +113,34 @@ exports.bank_getallraw = req, res => {
     })
 
 };
-exports.bank_getall = req, res => {
+exports.mobile_getall = req, res => {
     Bank.findAll().then(function(citizens){
         res.status(200).json({
             status: 1,
-            message: "Got banks in the database",
+            message: "Got mobiles in the database",
             data: citizens
         }).then(response =>{
             res.status(200).json({
                 status: 1,
-                message: "Successful get request for all banks"
+                message: "Successful get request for all mobiles"
             })
         })
     }).catch(error =>{
         res.status(500).json({
             status: -1,
-            message: `Failed get request for all banks`,
+            message: `Failed get request for all mobiles`,
             data : error
         })
         
     })
 };
-exports.bank_create = req,res => {
+exports.mobile_create = req,res => {
 
     console.log(req.body); 
         Bank.create(req.body).then(function(response){
             res.status(200).json({
                 status : 1,
-                message: "New bank identity created"
+                message: "New mobile identity created"
             });
         }).catch(function(err){
             console.log(err)
