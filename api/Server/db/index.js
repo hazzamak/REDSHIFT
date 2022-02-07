@@ -9,7 +9,7 @@ const Sequelize = require('sequelize');
 const env = require('./env.js');
 
 //Using sequelize to connect to the db
-const connection = new Sequelize(env.database, env.user, env.password,{
+const connection = (env.database, env.user, env.password,{
     host: env.host,
     port: env.port,
 

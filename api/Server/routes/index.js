@@ -19,14 +19,13 @@ const path = require('path');
 //Declaring connection details from the env file
 const env = require('../db/env.js');
 
+// const connection = require('../db/index.js');
+// const sequelize = require(path.join("../db/index.js"))(Sequelize.DataTypes);
+
 
 //Needs to be fixed, model is at the bottom for the moment
 //Declaring a variable to store the model details
 //const {Citizen} = require('../model/citizens.js');
-
-
-
-
 
 
 //===================================================
@@ -40,7 +39,7 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 }); // by using sequelize a db connection has been made
 
 
-//Not needed, will be moved to a test folder in db and not used in final program
+// Not needed, will be moved to a test folder in db and not used in final program
 sequelize.authenticate().then(function(success){
 
     console.log("connection to db is a success")
