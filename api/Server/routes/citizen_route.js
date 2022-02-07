@@ -12,19 +12,19 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
     
 });
 
-router.get("/get/id", citizenController.citizen_getbyid);
+router.get("/citizenget/id", citizenController.citizen_getbyid);
 
-router.get("/get/name/:forenames/:surname", citizenController.citezen_getbyname);
+router.get("/citizenget/name/:forenames/:surname", citizenController.citizen_getbyname);
 
-router.get("/get/other/:column/:data", citizenController.citizen_getother);
+router.get("/citizenget/other/:column/:data", citizenController.citizen_getother);
 
-router.put("/update", citizenController.citizen_update);
+router.put("/citizenupdate", citizenController.citizen_update);
 
 router.delete("/citizen/:id", citizenController.citizen_delete);
 
-router.get("/getall/raw", citizenController.citizen_getallraw);
+router.get("/citizengetall/raw", citizenController.citizen_getallraw);
 
-router.get("/getall", citizenController.citizen_getall);
+router.get("/citizengetall", citizenController.citizen_getall);
 
 router.post("/citizen", citizenController.citizen_create);
 

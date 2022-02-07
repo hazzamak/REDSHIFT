@@ -22,13 +22,13 @@ exports.bank_getbyid = req, res => {
 exports.bank_getbyname = req, res => {
         //Using a CRUD query here is the simplest way to get by id
         console.log(req.params);
-        sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
+        sequelize.query("SELECT * FROM bank_tables WHERE dateOfBirth = '"+ req.params.dateOfBirth,{
     
             type: sequelize.QueryTypes.SELECT
         }).then(response=>{
             res.status(200).json({
                 status: 1,
-                message: "Citizen found",
+                message: "Bank found",
                 data: response
             });
             }).catch(error=>{
@@ -38,13 +38,13 @@ exports.bank_getbyname = req, res => {
 exports.bank_getother = req, res => {
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.params);
-    sequelize.query("SELECT * FROM citizen WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
+    sequelize.query("SELECT * FROM bank_tables WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
 
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
-            message: "Citizen found",
+            message: "Bank found",
             data: response
         });
         }).catch(error=>{
@@ -53,26 +53,25 @@ exports.bank_getother = req, res => {
 };
 exports.bank_update = req, res => {
 
-        Citizen.update({
-            forenames: req.body.forenames,
-            surname: req.body.surname,
-            homeAddress: req.body.homeAddress,
-            dateOfBirth: req.body.dateOfBirth,
-            placeOfBirth: req.body.placeOfBirth,
-            sex: req.body.sex
+        Bank.update({
+            cardNumber: req.body.cardNumber,
+            sortCode: req.body.sortCode,
+            bankAccountId: req.body.bankAccountId,
+            accountNumber: req.body.accountNumber,
+            bank: req.body.placeOfBirth
         },{
             where:{
-                citizenID: req.body.citizenID,
+                bankCardId: req.body.citizenID,
             }
         }).then(response =>{
             res.status(200).json({
                 status: 1,
-                message:`citizen: ${req.body.citizenID} has been updated successfully`
+                message:`bank: ${req.body.bankCardId} has been updated successfully`
             })
         }).catch(error =>{
             res.status(500).json({
                 status: -1,
-                message: `Failed to update citizen: ${req.body.citizenID}`,
+                message: `Failed to update bank: ${req.body.bankCardId}`,
                 data : error
             })
         });
@@ -80,31 +79,31 @@ exports.bank_update = req, res => {
     
 };
 exports.bank_delete = req, res => {
-    Citizen.destroy({
+    Bank.destroy({
         where:{
-            citizenID: req.params.id
+            bankCardId: req.params.bankCardId
         }
     }).then(data=>{
         res.status(200).json({
             status: 1,
-            message: `Citizen: ${req.params.id} has been removed from the database`
+            message: `Bank: ${req.params.bankCardId} has been removed from the database`
         });
     }).catch(error=>{
         res.status(500).json({
             status: -1,
-            message: `Failed to delete citizen: ${req.params.id}`,
+            message: `Failed to delete citizen: ${req.params.bankCardId}`,
             data: error
         });
     });
 };
 exports.bank_getallraw = req, res => {
     
-    sequelize.query("SELECT * FROM citizen",{
+    sequelize.query("SELECT * FROM bank_tables",{
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
-            message: "Citizen found",
+            message: "Bank found",
             data: response
         
         })
@@ -114,21 +113,21 @@ exports.bank_getallraw = req, res => {
 
 };
 exports.bank_getall = req, res => {
-    Citizen.findAll().then(function(citizens){
+    Bank.findAll().then(function(citizens){
         res.status(200).json({
             status: 1,
-            message: "Got citizens in the database",
+            message: "Got banks in the database",
             data: citizens
         }).then(response =>{
             res.status(200).json({
                 status: 1,
-                message: "Successful get request for all citizens"
+                message: "Successful get request for all banks"
             })
         })
     }).catch(error =>{
         res.status(500).json({
             status: -1,
-            message: `Failed get request for all citizens`,
+            message: `Failed get request for all banks`,
             data : error
         })
         
@@ -137,10 +136,10 @@ exports.bank_getall = req, res => {
 exports.bank_create = req,res => {
 
     console.log(req.body); 
-        Citizen.create(req.body).then(function(response){
+        Bank.create(req.body).then(function(response){
             res.status(200).json({
                 status : 1,
-                message: "New citizen identity created"
+                message: "New bank identity created"
             });
         }).catch(function(err){
             console.log(err)
