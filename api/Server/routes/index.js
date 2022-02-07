@@ -13,6 +13,7 @@ File is named
 const express = require('express');
 const router = express.Router();
 const Sequelize = require("sequelize");
+const path = require('path');
 //===================================================
 
 //Declaring connection details from the env file
@@ -22,6 +23,7 @@ const env = require('../db/env.js');
 //Needs to be fixed, model is at the bottom for the moment
 //Declaring a variable to store the model details
 //const {Citizen} = require('../model/citizens.js');
+
 
 
 
@@ -47,6 +49,7 @@ sequelize.authenticate().then(function(success){
 });
 
 //===================================================
+const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.DataTypes);
 
 //error in this
 // const Citizen = sequelize.define("../model/citizens.js");
@@ -258,47 +261,6 @@ router.delete("/citizen/:id", function(req, res){
 
 //Sync connection:
 sequelize.sync();
-
-
-
-//===================================================
-// to be moved out of routes
-var Citizen = sequelize.define("citizen",{
-    citizenID:{
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        
-        autoIncrement: true
-        
-    },
-    forenames:{
-        type: Sequelize.STRING
-       // defaultValue: "Unkown"
-    },
-    surname:{
-        type: Sequelize.STRING
-    },
-    homeAddress:{
-        type: Sequelize.STRING
-    },
-    dateOfBirth:{
-        type: Sequelize.STRING,
-        
-    },
-    placeOfBirth:{
-        type: Sequelize.STRING
-    },
-    sex:{
-        type: Sequelize.STRING
-    }},{
-        modelName: "Citizen",
-        timestamps: false,
-        freezeTableName: true
-
-
-});
-//===================================================
 
 
 
