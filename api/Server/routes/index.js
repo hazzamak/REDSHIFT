@@ -140,9 +140,9 @@ router.get("/getall/raw",function(req, res){
 
 //===================================================
 //get by id
-router.get("/get/:id",function(req, res){
+router.get("/get/id",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
-    sequelize.query("SELECT * FROM citizen WHERE citizenID ="+ req.params.id,{
+    sequelize.query("SELECT * FROM citizen WHERE citizenID = '"+ req.body.id +"'",{
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
@@ -156,7 +156,43 @@ router.get("/get/:id",function(req, res){
     });
 //===================================================
 
+//===================================================
+//get by id
+router.get("/get/name",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.body);
+    sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.body.forenames+"' AND surname = '"+req.body.surname+"'",{
 
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
+
+router.get("/get/other",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.body);
+    sequelize.query("SELECT * FROM citizen WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
 
 //===================================================
 //Update
@@ -214,6 +250,8 @@ router.delete("/citizen/:id", function(req, res){
     });
 });
 //===================================================
+
+
 
 
 
