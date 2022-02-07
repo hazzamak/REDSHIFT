@@ -12,29 +12,13 @@ import SearchPage from "./pages/SearchPage";
 
 function App() {
     const [query, setQuery] = useState({});
-    const [data, setData] = useState([]);
-    
-    useEffect((event) => {
-        let url="";
-        if (query.column===undefined) {
-            url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
-
-        }else{
-            url=`http://localhost:3300/get/other/${query.column}/${query.data}`
-        }
-        axios.get(url)
-             .then(response => setData(response.data.data))
-             .catch(error => console.log(error));
-        },[query]);
-        
-        console.log(data)
-
+   
     return (
         <div className="App">
             <BrowserRouter>
                 <Navigation setQuery={setQuery} />
                 <Routes>
-                    <Route index element={<SearchPage data={data}/>} />
+                    <Route index element={<SearchPage query={query}/>} />
                     <Route
                         path="/biographical"
                         element={<BiographicalPage />}
