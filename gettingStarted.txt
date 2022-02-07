@@ -1,0 +1,12 @@
+Using the api for project Redshift,
+
+To open the server run: nodemon app.js.
+
+You will need the following installs:
+ npm i cors express mysql mysql2 sequelize body-parser
+ You may need, as of writing dotnev is not used but is planned to be implemented
+ npm dotenv 
+
+ The hardcoded PORT is 3300
+
+ 
