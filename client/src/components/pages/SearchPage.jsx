@@ -1,16 +1,32 @@
 import SearchResultCard from "../SearchResultCard";
 import SearchImage from "../../assets/SearchImage.jpg";
 import {useState, useEffect} from "react";
+import axios from "axios";
 
-const SearchPage = ({data}) => {
+
+const SearchPage = ({query}) => {
 
     const[display, setDisplay] =useState(true);
-    const handleDisplay=()=> {
-        setTimeout(()=>setDisplay(false), 2000)
-    }
+    const [data, setData] = useState([]);
+   
 
-    useEffect(handleDisplay,[]);
+    useEffect((event) => {
+        let url="";
+        if (query.column===undefined) {
+            url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
 
+        }else{
+            url=`http://localhost:3300/get/other/${query.column}/${query.data}`
+        }
+        axios.get(url)
+             .then(response => {
+                 setData(response.data.data);
+                 setDisplay(false);
+                })
+             .catch(error => console.log(error));
+        },[query]);
+        
+        console.log(data)
 
     return ( 
         <div className="mainContentWrapper">
