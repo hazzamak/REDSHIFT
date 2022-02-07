@@ -16,20 +16,11 @@ const connection = new Sequelize(env.database, env.user, env.password,{
     dialect:'mysql'
 
 });
-//Sync model, may not be needed here
 
-connection.authenticate().then(function(success){
 
-    console.log("connection to db is a success")
-}).catch(function(err){
-    console.log("we have this error: ", err);
-});
-
-// Test connection to the db
 
 // Exporting sequelize connection details 
 module.exports  = connection;
 
 
 //===================================================
-//Nothing here is being used in the main program at the moment
