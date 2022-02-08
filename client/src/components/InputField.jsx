@@ -5,12 +5,12 @@ import {useNavigate} from "react-router-dom";
 
 const InputField = ({setQuery}) => {
 
-  const [choice, setChoice]= useState("name");
+  const [choice, setChoice]= useState("fullName");
   const navigate = useNavigate();
 
 
   const handleFormSelection= () => {
-    if(choice==="name"){
+    if(choice==="fullName"){
       document.querySelector("#searchField").placeholder = "Forenames..."
       document.querySelector("#surnameField").style.display="block"
     } else{
@@ -28,7 +28,7 @@ const InputField = ({setQuery}) => {
     let query = document.querySelector("#selection").value;
     let data = {};
 
-    if(choice==="name"){
+    if(choice==="fullName"){
       data = {
         forenames: first,
         surname: second
@@ -54,7 +54,9 @@ const InputField = ({setQuery}) => {
           <input id="searchField" type="text" placeholder="Search..."/>
           <input id="surnameField" type="text" placeholder="Surname..."/>
           <select id="selection" onChange={(event) => setChoice(event.target.value)}>
-            <option value="name">Name </option>
+            <option value="fullName">Full Name </option>
+            <option value="forenames">Forenames </option>
+            <option value="surname">Surname </option>
             <option value="dateOfBirth">Date of Birth</option>
             <option value="homeAddress">Home Address</option>
             <option value="placeOfBirth">Place of Birth</option>
