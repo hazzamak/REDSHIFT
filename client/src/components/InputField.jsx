@@ -36,6 +36,10 @@ const InputField = ({setQuery}) => {
     }
 
     setQuery(data);
+
+    // Remove value in fields
+    document.querySelector("#searchField").value = "";
+    document.querySelector("#surnameField").value = "";
   };
 
     return ( 
@@ -48,7 +52,7 @@ const InputField = ({setQuery}) => {
             <option value="homeAddress">Home Address</option>
             <option value="placeOfBirth">Place of Birth</option>
           </select>
-          <button type="submit" > Search </button>
+          <button type="submit">Search</button>
         </form>
     )}
  
