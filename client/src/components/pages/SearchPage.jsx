@@ -1,5 +1,6 @@
 import SearchResultCard from "../SearchResultCard";
 import SearchImage from "../../assets/SearchImage.jpg";
+import LoadingIcon from "../LoadingIcon";
 import {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import SearchResultWrapper from "../SearchResultWrapper";
@@ -13,9 +14,6 @@ const SearchPage = ({query}) => {
     const [data, setData] = useState([]);
     const isMounted = useRef(false);
 
-    const fetchData = async () => {
-        
-    }
    
 
     useEffect(() => {
