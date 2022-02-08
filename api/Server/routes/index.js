@@ -50,32 +50,26 @@ sequelize.authenticate().then(function(success){
 //===================================================
 const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.DataTypes);
 
+//===================================================
+
+
+
+//===================================================
+
+
+
+
+//===================================================
+
+
+
+
 //error in this
 // const Citizen = sequelize.define("../model/citizens.js");
 
 router.post("/citizen",function(req,res){
 
-    console.log(req.body); 
-  
-        //static send
-    
-        // Citizen.create({
-        //     // citizenID: null,
-        //     forenames: "Declan Djik",
-        //     surname:"Tyson",
-        //     homeAddress:"10 KINGS DRIVE",
-        //     dateOfBirth:"10-10-2020",
-        //     placeOfBirth: " WEST SWANINGBOROUGH UNDER ORWELL ON SEA",
-        //     sex:"Male"
-        // }).then(function(response){
-        //     res.status(200).json({
-        //         status:1,
-        //         message: "Person identity created"
-        //     });
-        // }).catch(function(error){
-        //     console.log(error);
-        // });
-    
+    console.log(req.body);     
         Citizen.create(req.body).then(function(response){
             res.status(200).json({
                 status : 1,
@@ -254,7 +248,26 @@ router.delete("/citizen/:id", function(req, res){
 //===================================================
 
 
+//===================================================
+//get by id
+const BankView = require(path.join("../model/modelViews/bankView.js"))(sequelize, Sequelize.DataTypes);
+router.get("/get/bank/other",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.body);
+    sequelize.query("SELECT * FROM bank_tables WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
 
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
 
 
 
