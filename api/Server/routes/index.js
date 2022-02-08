@@ -13,18 +13,19 @@ File is named
 const express = require('express');
 const router = express.Router();
 const Sequelize = require("sequelize");
+const path = require('path');
 //===================================================
 
 //Declaring connection details from the env file
 const env = require('../db/env.js');
 
+// const connection = require('../db/index.js');
+// const sequelize = require(path.join("../db/index.js"))(Sequelize.DataTypes);
+
 
 //Needs to be fixed, model is at the bottom for the moment
 //Declaring a variable to store the model details
 //const {Citizen} = require('../model/citizens.js');
-
-
-
 
 
 //===================================================
@@ -38,7 +39,7 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 }); // by using sequelize a db connection has been made
 
 
-//Not needed, will be moved to a test folder in db and not used in final program
+// Not needed, will be moved to a test folder in db and not used in final program
 sequelize.authenticate().then(function(success){
 
     console.log("connection to db is a success")
@@ -47,6 +48,7 @@ sequelize.authenticate().then(function(success){
 });
 
 //===================================================
+const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.DataTypes);
 
 //error in this
 // const Citizen = sequelize.define("../model/citizens.js");
@@ -258,47 +260,6 @@ router.delete("/citizen/:id", function(req, res){
 
 //Sync connection:
 sequelize.sync();
-
-
-
-//===================================================
-// to be moved out of routes
-var Citizen = sequelize.define("citizen",{
-    citizenID:{
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        
-        autoIncrement: true
-        
-    },
-    forenames:{
-        type: Sequelize.STRING
-       // defaultValue: "Unkown"
-    },
-    surname:{
-        type: Sequelize.STRING
-    },
-    homeAddress:{
-        type: Sequelize.STRING
-    },
-    dateOfBirth:{
-        type: Sequelize.STRING,
-        
-    },
-    placeOfBirth:{
-        type: Sequelize.STRING
-    },
-    sex:{
-        type: Sequelize.STRING
-    }},{
-        modelName: "Citizen",
-        timestamps: false,
-        freezeTableName: true
-
-
-});
-//===================================================
 
 
 
