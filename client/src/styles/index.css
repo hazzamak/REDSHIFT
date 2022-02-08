@@ -217,6 +217,13 @@ a:active {
     margin-right: 40px;
 }
 
+.mainContentWrapper .overviewCard img {
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+    margin-right: 40px;
+}
+
 .mainContentWrapper .overviewCard .overviewCardInfo {
    display: flex;
    flex-direction: column;

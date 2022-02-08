@@ -8,6 +8,8 @@ const OverviewPage = () => {
   const { forenames, surname, dateOfBirth } = useParams();
 
   const [data, setData] = useState({});
+//   const [fakePerson, setFakePerson] = useState({});
+
   useEffect(() => {
         axios
         .get(
@@ -20,11 +22,27 @@ const OverviewPage = () => {
    
   }, []);
 
+
+//   useEffect(() => {
+//     axios
+//     .get(
+//       `https://randomuser.me/api/?gender=${data.sex}`
+//     )
+//     .then((response) => {
+//       setFakePerson(response.data.results[0]);
+//     })
+//     .catch((error) => console.log(error));
+//     console.log(fakePerson);
+
+// }, [data]);
+
+
   return (
     <div className="mainContentWrapper">
       <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
       <h1>Overview Page</h1>
       <div className="overviewCard">
+          {/* <img src={fakePerson.picture.large} alt="profile"/> */}
           <div className="overviewImage">
 
           </div>
