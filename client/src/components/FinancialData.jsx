@@ -23,7 +23,7 @@ const FinancialData = ({data}) => {
                     <p>Card Number: {data[0].cardNumber}</p>
                     <p>Sort Code: {data[0].sortCode}</p>
                     <br></br>
-                    <p>ATM Usage</p>
+                    <h3>ATM Usage</h3>
                     {data.map((atmUsage, index) =>{
                         return <ATMUsageCard key={index} data={atmUsage}/>
                     })}
