@@ -8,6 +8,7 @@ import BiographicalPage from "./pages/BiographicalPage";
 import AssociatesPage from "./pages/AssociatesPage";
 import FinancialPage from "./pages/FinancialPage";
 import SearchPage from "./pages/SearchPage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
     const [query, setQuery] = useState({});
@@ -22,9 +23,19 @@ function App() {
                         path="/biographical/:forenames/:surname/:dateOfBirth"
                         element={<BiographicalPage />}
                     />
-                    <Route path="/associates/:forenames/:surname/:dateOfBirth" element={<AssociatesPage />} />
-                    <Route path="/financial/:forenames/:surname/:dateOfBirth" element={<FinancialPage />} />
-                    <Route path="/overview/:forenames/:surname/:dateOfBirth" element={<OverviewPage />} />
+                    <Route
+                        path="/associates/:forenames/:surname/:dateOfBirth"
+                        element={<AssociatesPage />}
+                    />
+                    <Route
+                        path="/financial/:forenames/:surname/:dateOfBirth"
+                        element={<FinancialPage />}
+                    />
+                    <Route
+                        path="/overview/:forenames/:surname/:dateOfBirth"
+                        element={<OverviewPage />}
+                    />
+                    <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>
         </div>

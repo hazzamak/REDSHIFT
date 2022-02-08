@@ -203,16 +203,15 @@ a:active {
 
 .mainContentWrapper .overviewCard {
     display: flex;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     padding: 30px;
     border-radius: 8px;
-
 }
 
 .mainContentWrapper .overviewCard .overviewImage {
     height: 200px;
     width: 200px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 8px;
     margin-right: 40px;
 }
@@ -225,26 +224,22 @@ a:active {
 }
 
 .mainContentWrapper .overviewCard .overviewCardInfo {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-
-.mainContentWrapper .overviewCard .overviewCardInfo h4  {
-   font-size: 28px;
+.mainContentWrapper .overviewCard .overviewCardInfo h4 {
+    font-size: 28px;
 }
 
-.mainContentWrapper .overviewCard .overviewCardInfo .overviewCardData{
-   display: flex;
+.mainContentWrapper .overviewCard .overviewCardInfo .overviewCardData {
+    display: flex;
 }
 
-.mainContentWrapper 
-.overviewCard 
-.overviewCardInfo 
-.overviewCardData p{
-   margin-right: 15px;
- }
+.mainContentWrapper .overviewCard .overviewCardInfo .overviewCardData p {
+    margin-right: 15px;
+}
 
 .resultsWrapper {
     display: grid;
@@ -293,4 +288,40 @@ a:active {
     width: 14px;
     opacity: 0.5;
     margin-right: 8px;
+}
+
+.errorPageContents {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorPageContents h2 {
+    max-width: 500px;
+    text-align: center;
+}
+
+.errorPageContents button {
+    font-family: "Montserrat", sans-serif;
+    outline: none;
+    font-weight: 600;
+    border: none;
+    padding: 15px 35px;
+    margin-left: 15px;
+    margin-top: 50px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #ee1b24;
+    color: white;
+    border-radius: 8px;
+    transition: 0.4s background-color ease;
+    cursor: pointer;
+}
+
+.errorPageContents button:hover {
+    background-color: #df0f18;
 }
