@@ -5,7 +5,6 @@ import axios from "axios";
 import SearchResultWrapper from "../SearchResultWrapper";
 import Pagination from "../Pagination";
 
-
 const SearchPage = ({query}) => {
 
     const [loading, setLoading] = useState(false);
