@@ -9,7 +9,7 @@ const Menu = () => {
             <NavLink to={`/overview/${forenames}/${surname}/${dateOfBirth}`} className="menuItem" activeClassName="currentPage">Overview</NavLink>
             <NavLink to={`/biographical/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Biographical</NavLink>
             <NavLink to={`/associates/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Associates</NavLink>
-            <NavLink to={`/financial/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Financial</NavLink>
+            <NavLink to={`/bank/name/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Financial</NavLink>
 
         </div>
      );
