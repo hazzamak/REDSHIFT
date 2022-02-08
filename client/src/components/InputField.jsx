@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
+
+
 
 const InputField = ({setQuery}) => {
 
   const [choice, setChoice]= useState("name");
+  const navigate = useNavigate();
+
 
   const handleFormSelection= () => {
     if(choice==="name"){
@@ -40,6 +45,8 @@ const InputField = ({setQuery}) => {
     // Remove value in fields
     document.querySelector("#searchField").value = "";
     document.querySelector("#surnameField").value = "";
+    navigate("/")
+
   };
 
     return ( 

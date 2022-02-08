@@ -201,6 +201,51 @@ a:active {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.mainContentWrapper .overviewCard {
+    display: flex;
+    background-color: rgba(0,0,0,0.05);
+    padding: 30px;
+    border-radius: 8px;
+
+}
+
+.mainContentWrapper .overviewCard .overviewImage {
+    height: 200px;
+    width: 200px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 8px;
+    margin-right: 40px;
+}
+
+.mainContentWrapper .overviewCard img {
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+    margin-right: 40px;
+}
+
+.mainContentWrapper .overviewCard .overviewCardInfo {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+
+.mainContentWrapper .overviewCard .overviewCardInfo h4  {
+   font-size: 28px;
+}
+
+.mainContentWrapper .overviewCard .overviewCardInfo .overviewCardData{
+   display: flex;
+}
+
+.mainContentWrapper 
+.overviewCard 
+.overviewCardInfo 
+.overviewCardData p{
+   margin-right: 15px;
+ }
+
 .resultsWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;

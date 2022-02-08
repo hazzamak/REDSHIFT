@@ -194,6 +194,25 @@ router.get("/get/other/:column/:data",function(req, res){
             console.log(error);
         });
     });
+
+
+
+router.get("/get/overview/:forenames/:surname/:dateOfBirth",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.params);
+    sequelize.query(`SELECT * FROM citizen WHERE forenames = '${req.params.forenames}' AND surname = '${req.params.surname}' AND dateOfBirth = '${req.params.dateOfBirth}'`,{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
 //===================================================
 
 // bank_tables
