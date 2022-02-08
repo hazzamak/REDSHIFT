@@ -8,7 +8,7 @@ import LocationIcon from "../assets/location.svg"
 
 const SearchResultCard = ({data}) => {
     return ( 
-        <Link to="/overview">
+        <Link to={`/overview/${data.forenames}/${data.surname}/${data.dateOfBirth}`}>
             <div className="resultCardWrapper">
                 <img src={ProfileImage} alt="Profile" className="profileImage"/>
                 <div className="profileInfo">

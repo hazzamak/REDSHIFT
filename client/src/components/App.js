@@ -19,12 +19,12 @@ function App() {
                 <Routes>
                     <Route index element={<SearchPage query={query} />} />
                     <Route
-                        path="/biographical"
+                        path="/biographical/:forenames/:surname/:dateOfBirth"
                         element={<BiographicalPage />}
                     />
-                    <Route path="/associates" element={<AssociatesPage />} />
-                    <Route path="/financial" element={<FinancialPage />} />
-                    <Route path="/overview" element={<OverviewPage />} />
+                    <Route path="/associates/:forenames/:surname/:dateOfBirth" element={<AssociatesPage />} />
+                    <Route path="/financial/:forenames/:surname/:dateOfBirth" element={<FinancialPage />} />
+                    <Route path="/overview/:forenames/:surname/:dateOfBirth" element={<OverviewPage />} />
                 </Routes>
             </BrowserRouter>
         </div>
