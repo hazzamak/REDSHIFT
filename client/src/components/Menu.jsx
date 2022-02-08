@@ -10,6 +10,7 @@ const Menu = () => {
             <NavLink to={`/biographical/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Biographical</NavLink>
             <NavLink to={`/associates/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Associates</NavLink>
             <NavLink to={`/bank/name/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Financial</NavLink>
+            <NavLink to={`/mobile/name/${forenames}/${surname}/${dateOfBirth}`} className="menuItem">Mobile</NavLink>
 
         </div>
      );
