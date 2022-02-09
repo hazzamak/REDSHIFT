@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 
 
-
 const InputField = ({setQuery}) => {
 
   const [choice, setChoice]= useState("name");
@@ -27,7 +26,8 @@ const InputField = ({setQuery}) => {
     const second = document.querySelector("#surnameField").value;
     let query = document.querySelector("#selection").value;
     let data = {};
-
+    let message ="";
+    
     if(choice==="name"){
       data = {
         forenames: first,
@@ -39,6 +39,19 @@ const InputField = ({setQuery}) => {
         data: first
       }
     }
+
+    if(choice==="name"){
+      message = {
+        forenames: first,
+        surname: second
+      }
+    } else{
+      message = {
+        column: query,
+        data: first
+      }
+    }
+
 
     setQuery(data);
 

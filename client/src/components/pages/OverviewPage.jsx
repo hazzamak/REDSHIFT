@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 
+
+
 const OverviewPage = () => {
   const { forenames, surname, dateOfBirth } = useParams();
 
@@ -40,7 +42,8 @@ const OverviewPage = () => {
   return (
     <div className="mainContentWrapper">
       <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
-      <h1>Overview Page</h1>
+            <h1>Overview Page </h1>
+      
       <div className="overviewCard">
           {/* <img src={fakePerson.picture.large} alt="profile"/> */}
           <div className="overviewImage">
@@ -64,7 +67,7 @@ const OverviewPage = () => {
            <Card/> 
            <Card/> 
            <Card/>   
-         </div>  */}
+         </div>  */} 
     </div>
   );
 };

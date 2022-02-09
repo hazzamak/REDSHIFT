@@ -12,7 +12,7 @@ const SearchPage = ({query}) => {
     const [itemsPerPage] = useState(10)
     const [data, setData] = useState([]);
     const isMounted = useRef(false);
-
+    const [message, setMessage] = useState([]);
     const fetchData = async () => {
         
     }
@@ -38,6 +38,29 @@ const SearchPage = ({query}) => {
         }
     },[query]);
 
+    useEffect(() => {
+        if (isMounted.current) {
+            console.log("Fetching...");
+            let message="";
+            if (query.column===undefined) {
+                message="${query.forenames} ${query.surname}"
+            } else {
+                message="${query.column} ${query.data}"
+            }
+            axios.get(message)
+                .then(response => {
+                    setMessage(response.data.message);
+                    setLoading(true);
+                    })
+                .catch(error => console.log(error));
+        } else {
+            isMounted.current = true;
+        }
+    },[query]);
+
+
+
+
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexofFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = data.slice(indexofFirstItem, indexOfLastItem);
@@ -48,7 +71,7 @@ const SearchPage = ({query}) => {
         <div className="mainContentWrapper">
         {loading ? 
             <>
-                <SearchResultWrapper items={currentItems} loading={loading}/>
+                <SearchResultWrapper items={currentItems} loading={loading} query={query}/>
                 <Pagination itemsPerPage={itemsPerPage} totalItems={data.length} paginate={paginate}/>
             </>
             :
