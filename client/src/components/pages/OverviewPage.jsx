@@ -38,7 +38,6 @@ const OverviewPage = () => {
       setFakePerson(response.data.results[0]);
     })
     .catch((error) => console.log(error));
-    console.log(fakePerson);
 
 }, [data]);
 

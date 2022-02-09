@@ -21,12 +21,30 @@ function App() {
                 <Navigation setQuery={setQuery} />
                 <Routes>
                     <Route index element={<SearchPage query={query} />} />
-                    <Route path="/biographical/:forenames/:surname/:dateOfBirth" element={<BiographicalPage />} />
-                    <Route path="/associates/:forenames/:surname/:dateOfBirth" element={<AssociatesPage />} />
-                    <Route path="/bank/name/:forenames/:surname/:dateOfBirth" element={<FinancialPage />} />
-                    <Route path="/overview/:forenames/:surname/:dateOfBirth" element={<OverviewPage />} />
-                    <Route path="/mobile/name/:forenames/:surname/:dateOfBirth" element={<MobileDataPage />} />
-                    <Route path="/vehicle/name/:forenames/:surname/:dateOfBirth" element={<VehiclePage />} />
+                    <Route
+                        path="/biographical/:forenames/:surname/:dateOfBirth"
+                        element={<BiographicalPage />}
+                    />
+                    <Route
+                        path="/associates/:forenames/:surname/:dateOfBirth"
+                        element={<AssociatesPage />}
+                    />
+                    <Route
+                        path="/bank/name/:forenames/:surname/:dateOfBirth"
+                        element={<FinancialPage />}
+                    />
+                    <Route
+                        path="/overview/:forenames/:surname/:dateOfBirth"
+                        element={<OverviewPage />}
+                    />
+                    <Route
+                        path="/mobile/name/:forenames/:surname/:dateOfBirth"
+                        element={<MobileDataPage />}
+                    />
+                    <Route
+                        path="/vehicle/name/:forenames/:surname/:dateOfBirth"
+                        element={<VehiclePage />}
+                    />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>

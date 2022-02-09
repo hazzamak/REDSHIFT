@@ -9,8 +9,6 @@ const OverviewCard = ({data}) => {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    // if (isMounted.current) {
-      console.log("Fetching...");
     axios
     .get(
       `https://randomuser.me/api/?gender=${data.sex.toLowerCase()}`
@@ -19,10 +17,6 @@ const OverviewCard = ({data}) => {
       setFakePerson(response.data.results[0]);
     })
     .catch((error) => console.log(error));
-    // console.log(fakePerson);
-  // } else {
-    // isMounted.current = true;
-  // }
   }, [data]);
 
 
@@ -30,9 +24,6 @@ const OverviewCard = ({data}) => {
       
         <div className="overviewCard">
           {<ProfileImage fakePerson={fakePerson}/>}
-          {/* <div className="overviewImage">
-
-          </div> */}
           <div className="overviewCardInfo">
             <h4>
                 {data.forenames} {data.surname}

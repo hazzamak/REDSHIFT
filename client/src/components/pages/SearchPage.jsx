@@ -8,14 +8,17 @@ import SearchResultWrapper from "../SearchResultWrapper";
 
 const SearchPage = ({query}) => {
 
+    const [displayImage, setDisplayImage] = useState(true); 
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const isMounted = useRef(false);
    
 
     useEffect(() => {
-        if (isMounted.current) {
-            console.log("Fetching...");
+        
+        if(Object.keys(query).length !== 0 ) {
+            setDisplayImage(false);
+            setLoading(true);
             let url="";
             if (query.column===undefined) {
                 url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
@@ -25,43 +28,37 @@ const SearchPage = ({query}) => {
             axios.get(url)
                 .then(response => {
                     setData(response.data.data);
-                    setLoading(true);
+                    setLoading(false);
                     })
                 .catch(error => console.log(error));
-        } else {
-            isMounted.current = true;
         }
     },[query]);
 
 
-    // We start with an empty list of items.
-    const [currentItems, setCurrentItems] = useState(null);
+    const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-    // Here we use item offsets; we could also use page offsets
-    // following the API or data you're working with.
     const [itemOffset, setItemOffset] = useState(0);
     const [itemsPerPage] = useState(10);
 
     useEffect(() => {
-        // Fetch items from another resources.
         const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(data.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(data.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, data]);
 
-    // Invoke when user click to request another page.
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % data.length;
-        console.log(
-        `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
         setItemOffset(newOffset);
     };
-        
+
     return ( 
         <div className="mainContentWrapper">
-        {loading ? 
+        {displayImage ? 
+            <div className="imageWrapper">
+                <img className="searchImage" src={SearchImage} alt="Search"/>
+                <p> Please provide search query...</p>
+            </div>
+            :
             <>
                 <SearchResultWrapper items={currentItems} loading={loading} query={query}/>
                 <div className="paginationWrapper">
@@ -87,11 +84,6 @@ const SearchPage = ({query}) => {
                     />
                 </div>
             </>
-            :
-            <div className="imageWrapper">
-                <img className="searchImage" src={SearchImage} alt="Search"/>
-                <p> Please provide search query...</p>
-            </div>
         }
     </div>
      );
