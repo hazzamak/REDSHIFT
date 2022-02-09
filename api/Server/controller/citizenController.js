@@ -1,12 +1,5 @@
 'use strict';
-//===================================================
-/*
-File is named
 
-
-
-*/
-//===================================================
 
 //===================================================
 //Middleware
@@ -39,13 +32,14 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 }); // by using sequelize a db connection has been made
 
 
+//===================================================
 // Not needed, will be moved to a test folder in db and not used in final program
-sequelize.authenticate().then(function(success){
+// sequelize.authenticate().then(function(success){
 
-    console.log("connection to db is a success")
-}).catch(function(err){
-    console.log("we have this error: ", err);
-});
+//     console.log("connection to db is a success")
+// }).catch(function(err){
+//     console.log("we have this error: ", err);
+// });
 
 //===================================================
 const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.DataTypes);
@@ -65,7 +59,7 @@ exports.citizen_create = (req,res) => {
     
 };
 
-exports.citizen_getall = (req, res) => {
+exports.citizenGetAll = (req, res) => {
     Citizen.findAll().then(function(citizens){
         res.status(200).json({
             status: 1,
@@ -86,26 +80,27 @@ exports.citizen_getall = (req, res) => {
         
     })
 };
+// Sends data back as a json format
 
-exports.citizen_getallraw = (req, res) => {
+// exports.citizenGetAllRaw = (req, res) => {
     
-    sequelize.query("SELECT * FROM citizen",{
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Citizen found",
-            data: response
+//     sequelize.query("SELECT * FROM citizen",{
+//         type: sequelize.QueryTypes.SELECT
+//     }).then(response=>{
+//         res.status(200).json({
+//             status: 1,
+//             message: "Citizen found",
+//             data: response
         
-        })
-        }).catch(error=>{
-            console.log(error);
-    })
+//         })
+//         }).catch(error=>{
+//             console.log(error);
+//     })
 
-};
+// };
 
-exports.citizen_getby_id = (req, res) => {
-    //Using a CRUD query here is the simplest way to get by id
+exports.citizenGetById = (req, res) => {
+    
     sequelize.query("SELECT * FROM citizen WHERE citizenID = '"+ req.body.id +"'",{
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
@@ -119,8 +114,8 @@ exports.citizen_getby_id = (req, res) => {
         });
     };
 
-exports.citizen_getby_name = (req, res) => {
-    //Using a CRUD query here is the simplest way to get by id
+exports.citizenGetByName = (req, res) => {
+    
     console.log(req.body);
     sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.body.forenames+"' AND surname = '"+req.body.surname+"'",{
 
@@ -136,8 +131,8 @@ exports.citizen_getby_name = (req, res) => {
         });
     };
 
-exports.citizen_getby_other = (req, res) => {
-    //Using a CRUD query here is the simplest way to get by id
+exports.citizenGetByOther = (req, res) => {
+    
     console.log(req.body);
     sequelize.query("SELECT * FROM citizen WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
 
@@ -153,7 +148,7 @@ exports.citizen_getby_other = (req, res) => {
         });
     };
 
-exports.citizen_update = (req, res) => {
+exports.citizenUpdate = (req, res) => {
 
     Citizen.update({
         forenames: req.body.forenames,
@@ -182,7 +177,7 @@ exports.citizen_update = (req, res) => {
 
 };
 
-exports.citizen_delete = (req, res) => {
+exports.citizenDelete = (req, res) => {
     Citizen.destroy({
         where:{
             citizenID: req.params.id

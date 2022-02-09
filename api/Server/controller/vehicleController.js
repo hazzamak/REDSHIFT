@@ -1,14 +1,5 @@
 'use strict';
 //===================================================
-/*
-File is named
-
-
-
-*/
-//===================================================
-
-//===================================================
 //Middleware
 const express = require('express');
 const router = express.Router();
@@ -40,12 +31,12 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 
 
 // Not needed, will be moved to a test folder in db and not used in final program
-sequelize.authenticate().then(function(success){
+// sequelize.authenticate().then(function(success){
 
-    console.log("connection to db is a success")
-}).catch(function(err){
-    console.log("we have this error: ", err);
-});
+//     console.log("connection to db is a success")
+// }).catch(function(err){
+//     console.log("we have this error: ", err);
+// });
 
 //===================================================
 const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(sequelize, Sequelize.DataTypes);

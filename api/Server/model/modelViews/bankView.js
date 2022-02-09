@@ -15,6 +15,7 @@ return  sequelize.define("bank_tables",{
     bank:{
         type: Sequelize.STRING
        // defaultValue: "Unkown"
+       //Default value would be useful if we were making a website with full CRUD functionality 
     },
     forenames:{
         type: Sequelize.STRING
@@ -84,5 +85,5 @@ return  sequelize.define("bank_tables",{
 // To export copy and paste into routes:
 
 // const BankTable = require(path.join("../model/modelViews/bankView.js"))(sequelize, Sequelize.DataTypes);
-//Here Camera is capitalized unlike the database, could cause confusion
+
 // ===================================================

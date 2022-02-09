@@ -14,7 +14,7 @@ const express = require('express');
 const router = express.Router();
 const Sequelize = require("sequelize");
 const path = require('path');
-const fnc = require('../controller/vehicle_controller');
+const fnc = require('../controller/vehicleController');
 //===================================================
 
 //Declaring connection details from the env file
@@ -41,25 +41,28 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 
 
 // Not needed, will be moved to a test folder in db and not used in final program
-sequelize.authenticate().then(function(success){
+// sequelize.authenticate().then(function(success){
 
-    console.log("connection to db is a success")
-}).catch(function(err){
-    console.log("we have this error: ", err);
-});
+//     console.log("connection to db is a success")
+// }).catch(function(err){
+//     console.log("we have this error: ", err);
+// });
+
+
+//Sync connection:
+// sequelize.sync();
+
 
 //===================================================
+// Declaring model name
 const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(sequelize, Sequelize.DataTypes);
 //===================================================
-//get by id
+//Get by query
 router.get("/get/other", fnc.vehicleGetOther);
 //===================================================
 
 
-//Sync connection:
-sequelize.sync();
 
-//ifdnm
 
 //Fix to error: TypeError: Router.use() requires a middleware function but got a Object 
 //When using express.Router() this is a requirement 
