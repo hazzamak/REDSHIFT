@@ -14,6 +14,7 @@ const express = require('express');
 const router = express.Router();
 const Sequelize = require("sequelize");
 const path = require('path');
+const fnc = require('../controller/vehicle_controller');
 //===================================================
 
 //Declaring connection details from the env file
@@ -51,22 +52,7 @@ sequelize.authenticate().then(function(success){
 const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(sequelize, Sequelize.DataTypes);
 //===================================================
 //get by id
-router.get("/get/other",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
-    console.log(req.body);
-    sequelize.query("SELECT * FROM vehicle_table WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
-
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Vehicle found",
-            data: response
-        });
-        }).catch(error=>{
-            console.log(error);
-        });
-    });
+router.get("/get/other", fnc.vehicle_getby_other);
 //===================================================
 
 
