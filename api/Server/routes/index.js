@@ -219,7 +219,7 @@ router.get("/get/overview/:forenames/:surname/:dateOfBirth",function(req, res){
 
 //===================================================
 
-router.get("/get/bank/name/:forenames/:surname",function(req, res){
+router.get("/get/bank/name/:forenames/:surname/:dateOfBirth",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.params);
     sequelize.query("SELECT * FROM bank_tables WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
@@ -259,7 +259,7 @@ router.get("/get/bank/other/:column/:data",function(req, res){
 
 //===================================================
 
-router.get("/get/mobile/name/:forenames/:surname",function(req, res){
+router.get("/get/mobile/name/:forenames/:surname/:dateOfBirth",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.params);
     sequelize.query("SELECT * FROM mobile_table WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
@@ -299,7 +299,7 @@ router.get("/get/mobile/other/:column/:data",function(req, res){
 
 //===================================================
 
-router.get("/get/vehicle/name/:forenames/:surname",function(req, res){
+router.get("/get/vehicle/name/:forenames/:surname/:dateOfBirth",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.params);
     sequelize.query("SELECT * FROM vehicle_table WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
