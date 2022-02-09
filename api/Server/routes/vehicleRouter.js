@@ -52,7 +52,7 @@ sequelize.authenticate().then(function(success){
 const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(sequelize, Sequelize.DataTypes);
 //===================================================
 //get by id
-router.get("/get/other", fnc.vehicle_getby_other);
+router.get("/get/other", fnc.vehicleGetOther);
 //===================================================
 
 

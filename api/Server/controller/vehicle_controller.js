@@ -50,7 +50,7 @@ sequelize.authenticate().then(function(success){
 //===================================================
 const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(sequelize, Sequelize.DataTypes);
 
-exports.vehicle_getby_other = (req, res) => {
+exports.vehicleGetOther = (req, res) => {
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.body);
     sequelize.query("SELECT * FROM vehicle_table WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
