@@ -31,3 +31,4 @@ const server = app.listen(process.env.PORT || '3300',()=>{
 //===================================================
 
 
+module.exports = server;

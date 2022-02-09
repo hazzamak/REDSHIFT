@@ -51,12 +51,6 @@ const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.
 //===================================================
 
 
-
-//===================================================
-
-
-
-
 //===================================================
 //Creating new citizen
 //Not needed in the current specification 
