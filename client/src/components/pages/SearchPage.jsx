@@ -8,13 +8,17 @@ import SearchResultWrapper from "../SearchResultWrapper";
 
 const SearchPage = ({query}) => {
 
+    const [displayImage, setDisplayImage] = useState(true); 
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const isMounted = useRef(false);
    
 
     useEffect(() => {
-        if (isMounted.current) {
+        
+        if(Object.keys(query).length !== 0 ) {
+            setDisplayImage(false);
+            setLoading(true);
             let url="";
             if (query.column===undefined) {
                 url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
@@ -24,17 +28,14 @@ const SearchPage = ({query}) => {
             axios.get(url)
                 .then(response => {
                     setData(response.data.data);
-                    setLoading(true);
-                    console.log(query);
+                    setLoading(false);
                     })
                 .catch(error => console.log(error));
-        } else {
-            isMounted.current = true;
         }
     },[query]);
 
 
-    const [currentItems, setCurrentItems] = useState(null);
+    const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [itemsPerPage] = useState(10);
@@ -49,10 +50,15 @@ const SearchPage = ({query}) => {
         const newOffset = (event.selected * itemsPerPage) % data.length;
         setItemOffset(newOffset);
     };
-        
+
     return ( 
         <div className="mainContentWrapper">
-        {loading ? 
+        {displayImage ? 
+            <div className="imageWrapper">
+                <img className="searchImage" src={SearchImage} alt="Search"/>
+                <p> Please provide search query...</p>
+            </div>
+            :
             <>
                 <SearchResultWrapper items={currentItems} loading={loading} query={query}/>
                 <div className="paginationWrapper">
@@ -78,11 +84,6 @@ const SearchPage = ({query}) => {
                     />
                 </div>
             </>
-            :
-            <div className="imageWrapper">
-                <img className="searchImage" src={SearchImage} alt="Search"/>
-                <p> Please provide search query...</p>
-            </div>
         }
     </div>
      );
