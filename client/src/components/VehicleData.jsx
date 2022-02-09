@@ -2,8 +2,8 @@ import VehicleCard from "./VehicleCard";
 import LoadingIcon from "./LoadingIcon";
 import NoResults from "./NoResults";
 
-const VehicleData = ({data}) => {
-    if (data == null){
+const VehicleData = ({data, loading}) => {
+    if (loading){
         return <LoadingIcon/>
     }
     if (data.length === 0) {

@@ -1,6 +1,4 @@
-import SearchResultCard from "../SearchResultCard";
 import SearchImage from "../../assets/SearchImage.jpg";
-import LoadingIcon from "../LoadingIcon";
 import {useState, useEffect, useRef} from "react";
 import ReactPaginate from 'react-paginate';
 import axios from "axios";
