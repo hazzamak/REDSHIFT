@@ -1,12 +1,13 @@
 import VehicleCard from "./VehicleCard";
 import LoadingIcon from "./LoadingIcon";
+import NoResults from "./NoResults";
 
 const VehicleData = ({data}) => {
     if (data == null){
         return <LoadingIcon/>
     }
-    if (data.length == 0) {
-        return <p>No records found!</p>
+    if (data.length === 0) {
+        return <NoResults />
     }
     return (
         <div className="overviewCardInfo">
