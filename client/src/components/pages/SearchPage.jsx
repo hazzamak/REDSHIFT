@@ -5,7 +5,6 @@ import {useState, useEffect, useRef} from "react";
 import ReactPaginate from 'react-paginate';
 import axios from "axios";
 import SearchResultWrapper from "../SearchResultWrapper";
-import Pagination from "../Pagination";
 
 const SearchPage = ({query}) => {
 
@@ -75,12 +74,12 @@ const SearchPage = ({query}) => {
                 <SearchResultWrapper items={currentItems} loading={loading}/>
                 <div class="paginationWrapper">
                     <ReactPaginate
-                        nextLabel="next >"
+                        nextLabel=">"
                         onPageChange={handlePageClick}
                         pageRangeDisplayed={2}
                         marginPagesDisplayed={3}
                         pageCount={pageCount}
-                        previousLabel="< prev"
+                        previousLabel="<"
                         pageClassName="page-item"
                         pageLinkClassName="page-link"
                         previousClassName="page-item"
@@ -95,8 +94,6 @@ const SearchPage = ({query}) => {
                         renderOnZeroPageCount={null}
                     />
                 </div>
-                
-                {/* <Pagination itemsPerPage={itemsPerPage} totalItems={data.length} paginate={paginate}/> */}
             </>
             :
             <div className="imageWrapper">

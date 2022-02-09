@@ -363,31 +363,34 @@ STYLING FOR THE LOADING ICON ANIMATION
     font-weight: 500;
 }
 
-.items {
-    margin-bottom: 1rem;
+.page-item {
+    font-weight: 500;
+    margin: 0 5px;
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: 0.4s background-color ease;
 }
 
-.page-item {
-    padding: 15px 10px;
-    margin: 0 5px;
-    border-radius: 8px;
-    background-color: lightblue;
+.page-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .pagination-active {
-    background-color: #ee1b24;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: 600;
 }
 
 .page-link {
-    background-color: none;
-    padding: 15px 18px;
     border-radius: 8px;
+    cursor: pointer;
+    padding: 18px;
 }
 
-.page-link:hover {
+/* .page-link:hover {
     background-color: red;
-}
+} */
 
 .mainContentWrapper .paginationWrapper {
     display: flex;
