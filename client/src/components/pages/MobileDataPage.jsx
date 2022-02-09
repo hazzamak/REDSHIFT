@@ -26,9 +26,9 @@ const MobileDataPage = () => {
 
             <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
             <h1>Mobile Details Page</h1>
-          {
+          <div className="mobileDataWrapper">
             <MobileDataCard data={data}/>
-          }
+          </div>
            
         </div>
      );

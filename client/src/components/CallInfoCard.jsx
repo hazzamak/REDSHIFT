@@ -3,7 +3,7 @@ const CallInfoCard = ({data}) => {
     let timestamp = new Date(data.timestamp).toString();
 
     return ( 
-        <div>
+        <div className="mobileCard">
             <p>----------------------------------------------</p>
             <p>Call Received From: {data.receiverMSISDN}</p>
             <p>Call Recieved On: {timestamp}</p>
