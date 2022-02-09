@@ -2,8 +2,8 @@ import CallInfoCard from "./CallInfoCard";
 import LoadingIcon from "./LoadingIcon";
 import NoResults from "./NoResults";
 
-const MobileDataCard = ({data}) => {
-    if (data == null){
+const MobileDataCard = ({data, loading}) => {
+    if (loading){
         return <LoadingIcon/>
     }
     if (data.length === 0) {
