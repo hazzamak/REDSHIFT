@@ -44,7 +44,7 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 //===================================================
 const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.DataTypes);
 
-exports.citizen_create = (req,res) => {
+exports.citizenCreate = (req,res) => {
 
     console.log(req.body);     
         Citizen.create(req.body).then(function(response){

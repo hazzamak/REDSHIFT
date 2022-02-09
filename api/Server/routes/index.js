@@ -60,7 +60,7 @@ const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.
 //===================================================
 //Creating new citizen
 //Not needed in the current specification 
-router.post("/citizen",fnc.citizen_create);
+router.post("/citizen",fnc.citizenCreate);
 //===================================================
 //Get all
 //Not needed in the current specification 
