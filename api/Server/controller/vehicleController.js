@@ -1,14 +1,5 @@
 'use strict';
 //===================================================
-/*
-File is named
-
-
-
-*/
-//===================================================
-
-//===================================================
 //Middleware
 const express = require('express');
 const router = express.Router();
@@ -40,36 +31,29 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 
 
 // Not needed, will be moved to a test folder in db and not used in final program
-sequelize.authenticate().then(function(success){
+// sequelize.authenticate().then(function(success){
 
-    console.log("connection to db is a success")
-}).catch(function(err){
-    console.log("we have this error: ", err);
-});
+//     console.log("connection to db is a success")
+// }).catch(function(err){
+//     console.log("we have this error: ", err);
+// });
 
 //===================================================
-const BankTable = require(path.join("../model/modelViews/bankView.js"))(sequelize, Sequelize.DataTypes);
-//===================================================
-//get by id
-router.get("/get/other",function(req, res){
+const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(sequelize, Sequelize.DataTypes);
+
+exports.vehicleGetOther = (req, res) => {
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.body);
-    sequelize.query("SELECT * FROM bank_tables WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
+    sequelize.query("SELECT * FROM vehicle_table WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
 
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
-            message: "Citizen found",
+            message: "Vehicle found",
             data: response
         });
         }).catch(error=>{
             console.log(error);
         });
-    });
-//===================================================
-
-
-//Fix to error: TypeError: Router.use() requires a middleware function but got a Object 
-//When using express.Router() this is a requirement 
-module.exports = router;
+    };

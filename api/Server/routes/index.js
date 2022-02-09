@@ -1,12 +1,5 @@
 'use strict';
-//===================================================
-/*
-File is named
 
-
-
-*/
-//===================================================
 
 //===================================================
 //Middleware
@@ -14,6 +7,7 @@ const express = require('express');
 const router = express.Router();
 const Sequelize = require("sequelize");
 const path = require('path');
+const fnc = require('../controller/citizenController');
 //===================================================
 
 //Declaring connection details from the env file
@@ -40,12 +34,16 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 
 
 // Not needed, will be moved to a test folder in db and not used in final program
-sequelize.authenticate().then(function(success){
 
-    console.log("connection to db is a success")
-}).catch(function(err){
-    console.log("we have this error: ", err);
-});
+// sequelize.authenticate().then(function(success){
+
+//     console.log("connection to db is a success")
+// }).catch(function(err){
+//     console.log("we have this error: ", err);
+// });
+
+//Sync connection is an alternative :
+// sequelize.sync();
 
 //===================================================
 const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.DataTypes);
@@ -60,166 +58,43 @@ const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.
 
 
 //===================================================
-
-
-
-
-//error in this
-// const Citizen = sequelize.define("../model/citizens.js");
-
-router.post("/citizen",function(req,res){
-
-    console.log(req.body);     
-        Citizen.create(req.body).then(function(response){
-            res.status(200).json({
-                status : 1,
-                message: "New citizen identity created"
-            });
-        }).catch(function(err){
-            console.log(err)
- 
-        });
-    
-    });
-
-
+//Creating new citizen
+//Not needed in the current specification 
+router.post("/citizen",fnc.citizen_create);
 //===================================================
 //Get all
-
-router.get("/getall",function(req, res){
-        Citizen.findAll().then(function(citizens){
-            res.status(200).json({
-                status: 1,
-                message: "Got citizens in the database",
-                data: citizens
-            }).then(response =>{
-                res.status(200).json({
-                    status: 1,
-                    message: "Successful get request for all citizens"
-                })
-            })
-        }).catch(error =>{
-            res.status(500).json({
-                status: -1,
-                message: `Failed get request for all citizens`,
-                data : error
-            })
-            
-        })
-});
-//===================================================
-
-
-
-//===================================================
-//get all raw
-router.get("/getall/raw",function(req, res){
-    
-    sequelize.query("SELECT * FROM citizen",{
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Citizen found",
-            data: response
-        
-        })
-        }).catch(error=>{
-            console.log(error);
-    })
-
-});
-//Front- end may prefer this format 
-//===================================================
-
-
-
-//===================================================
-//get by id
-router.get("/get/id",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
-    sequelize.query("SELECT * FROM citizen WHERE citizenID = '"+ req.body.id +"'",{
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Citizen found",
-            data: response
-        });
-        }).catch(error=>{
-            console.log(error);
-        });
-    });
+//Not needed in the current specification 
+router.get("/getall", fnc.citizenGetAll);
 //===================================================
 
 //===================================================
-//get by id
-router.get("/get/name",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
-    console.log(req.body);
-    sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.body.forenames+"' AND surname = '"+req.body.surname+"'",{
+//Get by id
 
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Citizen found",
-            data: response
-        });
-        }).catch(error=>{
-            console.log(error);
-        });
-    });
+router.get("/get/id", fnc.citizenGetById);
 //===================================================
 
-router.get("/get/other",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
-    console.log(req.body);
-    sequelize.query("SELECT * FROM citizen WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
+//===================================================
+//Get by forenames and surname
 
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Citizen found",
-            data: response
-        });
-        }).catch(error=>{
-            console.log(error);
-        });
-    });
+router.get("/get/name", fnc.citizenGetByName);
+//===================================================
+/* This query takes data in a json body then does a search with an AND 
+This is a robust query as you set column name and data
+
+Expected json body being sent:
+{
+      "column": "forenames",
+      "data": "Geoffrey Adrian"
+
+}
+*/
+
+router.get("/get/other", fnc.citizenGetByOther);
 //===================================================
 
 //===================================================
 //Update
-router.put("/update", function(req, res){
-
-    Citizen.update({
-        forenames: req.body.forenames,
-        surname: req.body.surname,
-        homeAddress: req.body.homeAddress,
-        dateOfBirth: req.body.dateOfBirth,
-        placeOfBirth: req.body.placeOfBirth,
-        sex: req.body.sex
-    },{
-        where:{
-            citizenID: req.body.citizenID,
-        }
-    }).then(response =>{
-        res.status(200).json({
-            status: 1,
-            message:`citizen: ${req.body.citizenID} has been updated successfully`
-        })
-    }).catch(error =>{
-        res.status(500).json({
-            status: -1,
-            message: `Failed to update citizen: ${req.body.citizenID}`,
-            data : error
-        })
-    });
-
-
-})
+router.put("/update", fnc.citizenUpdate);
 //===================================================
 
 
@@ -227,52 +102,37 @@ router.put("/update", function(req, res){
 //===================================================
 //Destroy/ Delete/ Remove/ Exterminate
 
-router.delete("/citizen/:id", function(req, res){
-    Citizen.destroy({
-        where:{
-            citizenID: req.params.id
-        }
-    }).then(data=>{
-        res.status(200).json({
-            status: 1,
-            message: `Citizen: ${req.params.id} has been removed from the database`
-        });
-    }).catch(error=>{
-        res.status(500).json({
-            status: -1,
-            message: `Failed to delete citizen: ${req.params.id}`,
-            data: error
-        });
-    });
-});
+router.delete("/citizen/:id", fnc.citizenDelete);
 //===================================================
 
 
 //===================================================
-//get by id
-const BankView = require(path.join("../model/modelViews/bankView.js"))(sequelize, Sequelize.DataTypes);
-router.get("/get/bank/other",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
-    console.log(req.body);
-    sequelize.query("SELECT * FROM bank_tables WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
+//Get by query in bank
+// const BankView = require(path.join("../model/modelViews/bankView.js"))(sequelize, Sequelize.DataTypes);
+// router.get("/get/bank/other",function(req, res){
+//     //Using a CRUD query here is the simplest way to get by id
+//     console.log(req.body);
+//     sequelize.query("SELECT * FROM bank_tables WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
 
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
-        res.status(200).json({
-            status: 1,
-            message: "Citizen found",
-            data: response
-        });
-        }).catch(error=>{
-            console.log(error);
-        });
-    });
+//         type: sequelize.QueryTypes.SELECT
+//     }).then(response=>{
+//         res.status(200).json({
+//             status: 1,
+//             message: "Citizen found",
+//             data: response
+//         });
+//         }).catch(error=>{
+//             console.log(error);
+//         });
+//     });
+
+// Test for accessing data in bank_tables using bank model
+
 //===================================================
 //
 
 
-//Sync connection:
-sequelize.sync();
+
 
 
 

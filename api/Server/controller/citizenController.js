@@ -1,12 +1,5 @@
 'use strict';
-//===================================================
-/*
-File is named
 
-
-
-*/
-//===================================================
 
 //===================================================
 //Middleware
@@ -39,43 +32,21 @@ const sequelize = new Sequelize(env.database,env.username, env.password,{
 }); // by using sequelize a db connection has been made
 
 
+//===================================================
 // Not needed, will be moved to a test folder in db and not used in final program
-sequelize.authenticate().then(function(success){
+// sequelize.authenticate().then(function(success){
 
-    console.log("connection to db is a success")
-}).catch(function(err){
-    console.log("we have this error: ", err);
-});
+//     console.log("connection to db is a success")
+// }).catch(function(err){
+//     console.log("we have this error: ", err);
+// });
 
 //===================================================
 const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.DataTypes);
 
-//error in this
-// const Citizen = sequelize.define("../model/citizens.js");
+exports.citizen_create = (req,res) => {
 
-router.post("/citizen",function(req,res){
-
-    console.log(req.body); 
-  
-        //static send
-    
-        // Citizen.create({
-        //     // citizenID: null,
-        //     forenames: "Declan Djik",
-        //     surname:"Tyson",
-        //     homeAddress:"10 KINGS DRIVE",
-        //     dateOfBirth:"10-10-2020",
-        //     placeOfBirth: " WEST SWANINGBOROUGH UNDER ORWELL ON SEA",
-        //     sex:"Male"
-        // }).then(function(response){
-        //     res.status(200).json({
-        //         status:1,
-        //         message: "Person identity created"
-        //     });
-        // }).catch(function(error){
-        //     console.log(error);
-        // });
-    
+    console.log(req.body);     
         Citizen.create(req.body).then(function(response){
             res.status(200).json({
                 status : 1,
@@ -86,64 +57,50 @@ router.post("/citizen",function(req,res){
  
         });
     
-    });
+};
 
-
-//===================================================
-//Get all
-
-router.get("/getall",function(req, res){
-        Citizen.findAll().then(function(citizens){
-            res.status(200).json({
-                status: 1,
-                message: "Got citizens in the database",
-                data: citizens
-            }).then(response =>{
-                res.status(200).json({
-                    status: 1,
-                    message: "Successful get request for all citizens"
-                })
-            })
-        }).catch(error =>{
-            res.status(500).json({
-                status: -1,
-                message: `Failed get request for all citizens`,
-                data : error
-            })
-            
-        })
-});
-//===================================================
-
-
-
-//===================================================
-//get all raw
-router.get("/getall/raw",function(req, res){
-    
-    sequelize.query("SELECT * FROM citizen",{
-        type: sequelize.QueryTypes.SELECT
-    }).then(response=>{
+exports.citizenGetAll = (req, res) => {
+    Citizen.findAll().then(function(citizens){
         res.status(200).json({
             status: 1,
-            message: "Citizen found",
-            data: response
-        
+            message: "Got citizens in the database",
+            data: citizens
+        }).then(response =>{
+            res.status(200).json({
+                status: 1,
+                message: "Successful get request for all citizens"
+            })
         })
-        }).catch(error=>{
-            console.log(error);
+    }).catch(error =>{
+        res.status(500).json({
+            status: -1,
+            message: `Failed get request for all citizens`,
+            data : error
+        })
+        
     })
+};
+// Sends data back as a json format
 
-});
-//Front- end may prefer this format 
-//===================================================
+// exports.citizenGetAllRaw = (req, res) => {
+    
+//     sequelize.query("SELECT * FROM citizen",{
+//         type: sequelize.QueryTypes.SELECT
+//     }).then(response=>{
+//         res.status(200).json({
+//             status: 1,
+//             message: "Citizen found",
+//             data: response
+        
+//         })
+//         }).catch(error=>{
+//             console.log(error);
+//     })
 
+// };
 
-
-//===================================================
-//get by id
-router.get("/get/id",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
+exports.citizenGetById = (req, res) => {
+    
     sequelize.query("SELECT * FROM citizen WHERE citizenID = '"+ req.body.id +"'",{
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
@@ -155,13 +112,10 @@ router.get("/get/id",function(req, res){
         }).catch(error=>{
             console.log(error);
         });
-    });
-//===================================================
+    };
 
-//===================================================
-//get by id
-router.get("/get/name",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
+exports.citizenGetByName = (req, res) => {
+    
     console.log(req.body);
     sequelize.query("SELECT * FROM citizen WHERE forenames = '"+ req.body.forenames+"' AND surname = '"+req.body.surname+"'",{
 
@@ -175,11 +129,10 @@ router.get("/get/name",function(req, res){
         }).catch(error=>{
             console.log(error);
         });
-    });
-//===================================================
+    };
 
-router.get("/get/other",function(req, res){
-    //Using a CRUD query here is the simplest way to get by id
+exports.citizenGetByOther = (req, res) => {
+    
     console.log(req.body);
     sequelize.query("SELECT * FROM citizen WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
 
@@ -193,12 +146,9 @@ router.get("/get/other",function(req, res){
         }).catch(error=>{
             console.log(error);
         });
-    });
-//===================================================
+    };
 
-//===================================================
-//Update
-router.put("/update", function(req, res){
+exports.citizenUpdate = (req, res) => {
 
     Citizen.update({
         forenames: req.body.forenames,
@@ -225,15 +175,9 @@ router.put("/update", function(req, res){
     });
 
 
-})
-//===================================================
+};
 
-
-
-//===================================================
-//Destroy/ Delete/ Remove/ Exterminate
-
-router.delete("/citizen/:id", function(req, res){
+exports.citizenDelete = (req, res) => {
     Citizen.destroy({
         where:{
             citizenID: req.params.id
@@ -250,19 +194,5 @@ router.delete("/citizen/:id", function(req, res){
             data: error
         });
     });
-});
-//===================================================
+};
 
-
-
-
-
-
-//Sync connection:
-sequelize.sync();
-
-
-
-//Fix to error: TypeError: Router.use() requires a middleware function but got a Object 
-//When using express.Router() this is a requirement 
-module.exports = router;
