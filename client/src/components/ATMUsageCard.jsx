@@ -13,7 +13,7 @@ const ATMUsageCard = ({data}) => {
                 <p>ATM Located at:</p>
                 <p>Street Name: {data.streetName}</p>
                 <p>Postcode: {data.postcode}</p>
-            
+                <br></br>
         </div>
      );
 }
