@@ -1,11 +1,10 @@
 import SearchResultCard from "./SearchResultCard";
 
 
-const SearchResultWrapper = ({items, loading, query, message}) => {
+const SearchResultWrapper = ({items, loading, query}) => {
     if (!loading) {
         return <h2>Loading data...</h2>
     }
-console.log(query);
     return ( 
         <>
             <h2 className="searchResultsHeader">{query.message}</h2>

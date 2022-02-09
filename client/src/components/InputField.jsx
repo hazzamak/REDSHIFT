@@ -21,6 +21,7 @@ const InputField = ({setQuery}) => {
   useEffect(handleFormSelection, [choice])
 
   const handleSubmit = (event) => {
+    
     event.preventDefault();
     const first = document.querySelector("#searchField").value;
     const second = document.querySelector("#surnameField").value;

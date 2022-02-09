@@ -15,7 +15,6 @@ const SearchPage = ({query}) => {
 
     useEffect(() => {
         if (isMounted.current) {
-            console.log("Fetching...");
             let url="";
             if (query.column===undefined) {
                 url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
@@ -26,6 +25,7 @@ const SearchPage = ({query}) => {
                 .then(response => {
                     setData(response.data.data);
                     setLoading(true);
+                    console.log(query);
                     })
                 .catch(error => console.log(error));
         } else {
@@ -34,28 +34,19 @@ const SearchPage = ({query}) => {
     },[query]);
 
 
-    // We start with an empty list of items.
     const [currentItems, setCurrentItems] = useState(null);
     const [pageCount, setPageCount] = useState(0);
-    // Here we use item offsets; we could also use page offsets
-    // following the API or data you're working with.
     const [itemOffset, setItemOffset] = useState(0);
     const [itemsPerPage] = useState(10);
 
     useEffect(() => {
-        // Fetch items from another resources.
         const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(data.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(data.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, data]);
 
-    // Invoke when user click to request another page.
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % data.length;
-        console.log(
-        `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
         setItemOffset(newOffset);
     };
         
@@ -64,7 +55,7 @@ const SearchPage = ({query}) => {
         {loading ? 
             <>
                 <SearchResultWrapper items={currentItems} loading={loading} query={query}/>
-                <div class="paginationWrapper">
+                <div className="paginationWrapper">
                     <ReactPaginate
                         nextLabel=">"
                         onPageChange={handlePageClick}
