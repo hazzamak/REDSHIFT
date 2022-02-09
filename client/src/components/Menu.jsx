@@ -26,11 +26,11 @@ const Menu = () => {
             <NavLink 
                 to={`/mobile/name/${forenames}/${surname}/${dateOfBirth}`} 
                 className={({isActive}) => "menuItem" + (isActive ? " active" : "")}
-                >Financial</NavLink>
+                >Mobile</NavLink>
             <NavLink 
                 to={`/vehicle/name/${forenames}/${surname}/${dateOfBirth}`} 
                 className={({isActive}) => "menuItem" + (isActive ? " active" : "")}
-                >Financial</NavLink>
+                >Vehicle</NavLink>
                 
 
         </div>
