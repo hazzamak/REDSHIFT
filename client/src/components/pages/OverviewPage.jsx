@@ -1,13 +1,16 @@
 import Card from "../Card";
 import Menu from "../Menu";
+import LoadingIcon from "../LoadingIcon";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import OverviewCard from "../OverviewCard";
 
 const OverviewPage = () => {
   const { forenames, surname, dateOfBirth } = useParams();
 
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
 //   const [fakePerson, setFakePerson] = useState({});
 
   useEffect(() => {
@@ -17,6 +20,7 @@ const OverviewPage = () => {
         )
         .then((response) => {
           setData(response.data.data[0]);
+          setLoading(false);
         })
         .catch((error) => console.log(error));
    
@@ -41,24 +45,7 @@ const OverviewPage = () => {
     <div className="mainContentWrapper">
       <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
       <h1>Overview Page</h1>
-      <div className="overviewCard">
-          {/* <img src={fakePerson.picture.large} alt="profile"/> */}
-          <div className="overviewImage">
-
-          </div>
-          <div className="overviewCardInfo">
-            <h4>
-                {data.forenames} {data.surname}
-            </h4>
-           <div className="overviewCardData"> 
-                <p>{data.dateOfBirth}</p>
-                <p>{data.sex}</p>
-                <p>{data.placeOfBirth}</p>
-            </div>
-            <p>{data.homeAddress}</p>
-          </div>
-        
-      </div>
+      {loading ? <LoadingIcon /> : <OverviewCard data={data} />}
       {/* <div className="cardWrapper">
            <Card/>
            <Card/> 
