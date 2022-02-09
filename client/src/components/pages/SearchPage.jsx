@@ -9,11 +9,8 @@ import SearchResultWrapper from "../SearchResultWrapper";
 const SearchPage = ({query}) => {
 
     const [loading, setLoading] = useState(false);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [itemsPerPage] = useState(10)
     const [data, setData] = useState([]);
     const isMounted = useRef(false);
-
    
 
     useEffect(() => {
@@ -36,11 +33,6 @@ const SearchPage = ({query}) => {
         }
     },[query]);
 
-    // const indexOfLastItem = currentPage * itemsPerPage;
-    // const indexofFirstItem = indexOfLastItem - itemsPerPage;
-    // const currentItems = data.slice(indexofFirstItem, indexOfLastItem);
-
-    // const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     // We start with an empty list of items.
     const [currentItems, setCurrentItems] = useState(null);
@@ -71,7 +63,7 @@ const SearchPage = ({query}) => {
         <div className="mainContentWrapper">
         {loading ? 
             <>
-                <SearchResultWrapper items={currentItems} loading={loading}/>
+                <SearchResultWrapper items={currentItems} loading={loading} query={query}/>
                 <div class="paginationWrapper">
                     <ReactPaginate
                         nextLabel=">"
@@ -101,9 +93,6 @@ const SearchPage = ({query}) => {
                 <p> Please provide search query...</p>
             </div>
         }
-        
-        
-        
     </div>
      );
 }
