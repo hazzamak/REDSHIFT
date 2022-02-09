@@ -13,7 +13,7 @@ const OverviewPage = () => {
 
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-//   const [fakePerson, setFakePerson] = useState({});
+  const [fakePerson, setFakePerson] = useState({});
 
   useEffect(() => {
         axios
@@ -29,18 +29,18 @@ const OverviewPage = () => {
   }, []);
 
 
-//   useEffect(() => {
-//     axios
-//     .get(
-//       `https://randomuser.me/api/?gender=${data.sex}`
-//     )
-//     .then((response) => {
-//       setFakePerson(response.data.results[0]);
-//     })
-//     .catch((error) => console.log(error));
-//     console.log(fakePerson);
+  useEffect(() => {
+    axios
+    .get(
+      `https://randomuser.me/api/?gender=${data.sex}`
+    )
+    .then((response) => {
+      setFakePerson(response.data.results[0]);
+    })
+    .catch((error) => console.log(error));
+    console.log(fakePerson);
 
-// }, [data]);
+}, [data]);
 
 
   return (

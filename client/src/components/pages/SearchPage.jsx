@@ -64,7 +64,7 @@ const SearchPage = ({query}) => {
         {loading ? 
             <>
                 <SearchResultWrapper items={currentItems} loading={loading} query={query}/>
-                <div class="paginationWrapper">
+                <div className="paginationWrapper">
                     <ReactPaginate
                         nextLabel=">"
                         onPageChange={handlePageClick}
