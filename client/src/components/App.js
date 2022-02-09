@@ -8,6 +8,8 @@ import BiographicalPage from "./pages/BiographicalPage";
 import AssociatesPage from "./pages/AssociatesPage";
 import FinancialPage from "./pages/FinancialPage";
 import SearchPage from "./pages/SearchPage";
+import MobileDataPage from "./pages/MobileDataPage";
+import VehiclePage from "./pages/VehiclePage";
 
 function App() {
     const [query, setQuery] = useState({});
@@ -23,8 +25,10 @@ function App() {
                         element={<BiographicalPage />}
                     />
                     <Route path="/associates/:forenames/:surname/:dateOfBirth" element={<AssociatesPage />} />
-                    <Route path="/financial/:forenames/:surname/:dateOfBirth" element={<FinancialPage />} />
+                    <Route path="/bank/name/:forenames/:surname/:dateOfBirth" element={<FinancialPage />} />
                     <Route path="/overview/:forenames/:surname/:dateOfBirth" element={<OverviewPage />} />
+                    <Route path="/mobile/name/:forenames/:surname/:dateOfBirth" element={<MobileDataPage />} />
+                    <Route path="/vehicle/name/:forenames/:surname/:dateOfBirth" element={<VehiclePage />} />
                 </Routes>
             </BrowserRouter>
         </div>

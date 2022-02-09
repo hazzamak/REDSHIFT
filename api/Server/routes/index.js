@@ -156,6 +156,8 @@ router.get("/get/id",function(req, res){
     });
 //===================================================
 
+// citizen
+
 //===================================================
 //get by id
 router.get("/get/name/:forenames/:surname",function(req, res){
@@ -199,6 +201,126 @@ router.get("/get/overview/:forenames/:surname/:dateOfBirth",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.params);
     sequelize.query(`SELECT * FROM citizen WHERE forenames = '${req.params.forenames}' AND surname = '${req.params.surname}' AND dateOfBirth = '${req.params.dateOfBirth}'`,{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
+
+// bank_tables
+
+//===================================================
+
+router.get("/get/bank/name/:forenames/:surname/:dateOfBirth",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.params);
+    sequelize.query("SELECT * FROM bank_tables WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
+
+router.get("/get/bank/other/:column/:data",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.body);
+    sequelize.query("SELECT * FROM bank_tables WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
+
+// mobile_table
+
+//===================================================
+
+router.get("/get/mobile/name/:forenames/:surname/:dateOfBirth",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.params);
+    sequelize.query("SELECT * FROM mobile_table WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
+
+router.get("/get/mobile/other/:column/:data",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.params);
+    sequelize.query("SELECT * FROM mobile_table WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
+
+// vehicle_table
+
+//===================================================
+
+router.get("/get/vehicle/name/:forenames/:surname/:dateOfBirth",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.params);
+    sequelize.query("SELECT * FROM vehicle_table WHERE forenames = '"+ req.params.forenames+"' AND surname = '"+req.params.surname+"'",{
+
+        type: sequelize.QueryTypes.SELECT
+    }).then(response=>{
+        res.status(200).json({
+            status: 1,
+            message: "Citizen found",
+            data: response
+        });
+        }).catch(error=>{
+            console.log(error);
+        });
+    });
+//===================================================
+
+router.get("/get/vehicle/other/:column/:data",function(req, res){
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.params);
+    sequelize.query("SELECT * FROM vehicle_table WHERE " + req.params.column +" = '"+ req.params.data +"'" ,{
 
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
