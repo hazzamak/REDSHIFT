@@ -1,4 +1,5 @@
 import ATMUsageCard from "./ATMUsageCard";
+import EPOSUsageCard from "./EPOSUsageCard";
 
 const FinancialData = ({data}) => {
     if (data == null){
@@ -26,6 +27,11 @@ const FinancialData = ({data}) => {
                     <h3>ATM Usage</h3>
                     {data.map((atmUsage, index) =>{
                         return <ATMUsageCard key={index} data={atmUsage}/>
+                    })}
+                    <br></br>
+                    <h3>EPOS Transactions</h3>
+                    {data.map((eposUsage, index) =>{
+                        return <EPOSUsageCard key={index} data={eposUsage}/>
                     })}
                 </div>
         
