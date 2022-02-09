@@ -1,42 +1,30 @@
-import SearchImage from "../../assets/SearchImage.jpg";
-import {useState, useEffect, useRef} from "react";
-import ReactPaginate from 'react-paginate';
+import Menu from "../Menu";
+import {useState, useEffect} from "react";
 import axios from "axios";
-import SearchResultWrapper from "../SearchResultWrapper";
+import { useParams } from "react-router";
+import MobileDataCard from "../MobileDataCard";
+import ReactPaginate from 'react-paginate';
 
-const SearchPage = ({query}) => {
+const MobileDataPage = () => {
 
-    const [displayImage, setDisplayImage] = useState(true); 
-    const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
-    const isMounted = useRef(false);
-   
-
-    useEffect(() => {
-        
-        if(Object.keys(query).length !== 0 ) {
-            setDisplayImage(false);
-            setLoading(true);
-            let url="";
-            if (query.column===undefined) {
-                url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
-            } else {
-                url=`http://localhost:3300/get/other/${query.column}/${query.data}`
-            }
-            axios.get(url)
-                .then(response => {
-                    setData(response.data.data);
-                    setLoading(false);
-                    })
-                .catch(error => console.log(error));
-        }
-    },[query]);
-
-
+    const [loading, setLoading] = useState(false);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
-    const [itemsPerPage] = useState(10);
+    const [itemsPerPage] = useState(6);
+    const { forenames, surname, dateOfBirth } = useParams();
+
+    useEffect(() => {
+      setLoading(true);
+        axios.get(`http://localhost:3300/get/mobile/name/${forenames}/${surname}/${dateOfBirth}`)
+             .then((response) => {
+                setData(response.data.data);
+                setLoading(false);
+              })
+              .catch((error) => console.log(error));
+        
+    }, []);
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
@@ -51,15 +39,12 @@ const SearchPage = ({query}) => {
 
     return ( 
         <div className="mainContentWrapper">
-        {displayImage ? 
-            <div className="imageWrapper">
-                <img className="searchImage" src={SearchImage} alt="Search"/>
-                <p> Please provide search query...</p>
-            </div>
-            :
-            <>
-                <SearchResultWrapper items={currentItems} loading={loading} query={query}/>
-                <div className="paginationWrapper">
+
+            <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
+            <h1>Mobile Details</h1>
+          <div className="mobileDataWrapper">
+            <MobileDataCard loading={loading} data={currentItems}/>
+            <div className="paginationWrapper">
                     <ReactPaginate
                         nextLabel=">"
                         onPageChange={handlePageClick}
@@ -81,10 +66,10 @@ const SearchPage = ({query}) => {
                         renderOnZeroPageCount={null}
                     />
                 </div>
-            </>
-        }
-    </div>
+          </div>
+           
+        </div>
      );
 }
  
-export default SearchPage;
+export default MobileDataPage;

@@ -73,13 +73,18 @@ router.get("/getall", fnc.citizenGetAll);
 router.get("/get/id", fnc.citizenGetById);
 //===================================================
 
+// citizen
+
 //===================================================
+
 //Get by forenames and surname
 
 router.get("/get/name", fnc.citizenGetByName);
+
 //===================================================
 /* This query takes data in a json body then does a search with an AND 
 This is a robust query as you set column name and data
+
 
 Expected json body being sent:
 {
@@ -90,6 +95,10 @@ Expected json body being sent:
 */
 
 router.get("/get/other", fnc.citizenGetByOther);
+
+
+
+r
 //===================================================
 
 //===================================================

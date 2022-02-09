@@ -116,7 +116,6 @@ a:active {
 
 .menuWrapper {
     display: flex;
-    margin: 30px 0 0 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -137,7 +136,7 @@ a:active {
 
 .mainContentWrapper {
     max-width: 1080px;
-    margin: 0 auto;
+    margin: 70px auto 0;
 }
 
 .mainContentWrapper .imageWrapper {
@@ -163,6 +162,149 @@ a:active {
     padding: 30px;
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 8px;
+}
+
+.mainContentWrapper .searchResultsHeader {
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mainContentWrapper .overviewCard {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.mainContentWrapper .overviewCard .overviewImage {
+    height: 200px;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-right: 40px;
+}
+
+.mainContentWrapper .overviewCard img {
+    height: 200px;
+    width: 200px;
+    border-radius: 8px;
+    margin-right: 40px;
+}
+
+.mainContentWrapper .vehicleDataWrapper {
+    margin-left: 30px;
+}
+
+.mainContentWrapper .mobileDataWrapper {
+    margin-left: 30px;
+}
+
+.mainContentWrapper .vehicleDataCard {
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.mainContentWrapper .mobileDataCard {
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.mainContentWrapper .financialDataCard {
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.mainContentWrapper .financialCardData {
+    font-size: 19px;
+}
+
+.mainContentWrapper .mobileCardData {
+    font-size: 19px;
+}
+
+.mainContentWrapper .vehicleCardWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.mainContentWrapper .mobileCardWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.mainContentWrapper .financialCardWrapper {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr;
+    gap: 25px; */
+}
+
+.mainContentWrapper .transactionCardWrapper {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr;
+    gap: 25px; */
+}
+.mainContentWrapper .transactionCard {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding-right: 20px;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+.mainContentWrapper .vehicleCard {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding-right: 20px;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+.mainContentWrapper .financialCard {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding-right: 20px;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+.mainContentWrapper .mobileCard {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding-right: 20px;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+.mainContentWrapper .overviewCard .overviewCardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mainContentWrapper .overviewCard .overviewCardInfo h4 {
+    font-size: 28px;
+}
+
+.mainContentWrapper .overviewCard .overviewCardInfo .overviewCardData {
+    display: flex;
+}
+
+.mainContentWrapper .overviewCard .overviewCardInfo .overviewCardData p {
+    margin-right: 15px;
 }
 
 .resultsWrapper {
@@ -212,4 +354,195 @@ a:active {
     width: 14px;
     opacity: 0.5;
     margin-right: 8px;
+}
+
+.errorPageContents {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorPageContents h2 {
+    max-width: 500px;
+    text-align: center;
+}
+
+.errorPageContents button {
+    font-family: "Montserrat", sans-serif;
+    outline: none;
+    font-weight: 600;
+    border: none;
+    padding: 15px 35px;
+    margin-left: 15px;
+    margin-top: 50px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #ee1b24;
+    color: white;
+    border-radius: 8px;
+    transition: 0.4s background-color ease;
+    cursor: pointer;
+}
+
+.errorPageContents button:hover {
+    background-color: #df0f18;
+}
+/**************************************************************** 
+STYLING FOR THE LOADING ICON ANIMATION
+*****************************************************************/
+
+.loadingIconWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 170px;
+}
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ee1b24;
+    margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+}
+.lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+}
+.lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+}
+.lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+}
+.lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+}
+.lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+}
+.lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+}
+.lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+}
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.page-item {
+    font-weight: 500;
+    margin: 0 5px;
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: 0.4s background-color ease;
+}
+
+.page-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.pagination-active {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+}
+
+.page-link {
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 18px;
+}
+
+.mainContentWrapper .paginationWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 70px 0;
+}
+
+.noResultsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.noResultsWrapper img {
+    max-width: 300px;
+}
+
+.noResultsWrapper h1 {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.noResultsWrapper p {
+    max-width: 540px;
+    line-height: 25px;
+    font-size: 18px;
+    text-align: center;
 }

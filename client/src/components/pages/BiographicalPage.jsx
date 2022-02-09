@@ -4,7 +4,7 @@ const BiographicalPage = () => {
     return ( 
         <div className="mainContentWrapper">
             <Menu/>
-        <h1>Biographical Page</h1>
+        <h1>Biographical</h1>
 
     </div>
      );

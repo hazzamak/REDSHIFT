@@ -6,24 +6,24 @@ import CalendarIcon from "../assets/calendar.svg"
 import LocationIcon from "../assets/location.svg"
 
 
-const SearchResultCard = () => {
+const SearchResultCard = ({data}) => {
     return ( 
-        <Link to="/overview">
+        <Link to={`/overview/${data.forenames}/${data.surname}/${data.dateOfBirth}`}>
             <div className="resultCardWrapper">
                 <img src={ProfileImage} alt="Profile" className="profileImage"/>
                 <div className="profileInfo">
-                    <h4>John Smith</h4>
+                    <h4>{data.forenames} {data.surname}</h4>
                     <div className="profileInfo-item">
                         <img src={MaleIcon} alt="Icon"/>
-                        <p>Male</p>
+                        <p>{data.sex}</p>
                     </div>
                     <div className="profileInfo-item">
                         <img src={CalendarIcon} alt="Icon"/>
-                        <p>15/01/1973</p>
+                        <p>{data.dateOfBirth}</p>
                     </div>
                     <div className="profileInfo-item">
                         <img src={LocationIcon} alt="Icon"/>
-                        <p>613 High Street, Stoke-On-Trent, ST6 5PD</p>
+                        <p>{data.homeAddress}</p>
                     </div>
                 </div>
             </div>
