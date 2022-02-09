@@ -70,6 +70,11 @@ router.get("/get/other",function(req, res){
 //===================================================
 
 
+//Sync connection:
+sequelize.sync();
+
+
+
 //Fix to error: TypeError: Router.use() requires a middleware function but got a Object 
 //When using express.Router() this is a requirement 
 module.exports = router;
