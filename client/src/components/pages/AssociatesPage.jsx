@@ -4,7 +4,7 @@ const AssociatesPage = () => {
     return ( 
         <div className="mainContentWrapper">
             <Menu/>
-        <h1>Associates Page</h1>
+        <h1>Associates</h1>
 
     </div>
      );

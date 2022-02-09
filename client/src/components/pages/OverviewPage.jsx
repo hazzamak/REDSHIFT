@@ -45,7 +45,7 @@ const OverviewPage = () => {
   return (
     <div className="mainContentWrapper">
       <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
-      <h1>Overview Page</h1>
+      <h1>Overview</h1>
       {loading ? <LoadingIcon /> : <OverviewCard data={data} />}
       {/* <div className="cardWrapper">
            <Card/>

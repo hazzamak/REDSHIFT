@@ -1,10 +1,15 @@
 import LoadingIcon from "./LoadingIcon";
+import NoResults from "./NoResults";
 import SearchResultCard from "./SearchResultCard";
 
 
 const SearchResultWrapper = ({items, loading, query}) => {
     if (loading) {
         return <LoadingIcon />
+    }
+
+    if (items.length === 0) {
+        return <NoResults />
     }
     return ( 
         <>

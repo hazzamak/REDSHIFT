@@ -1,13 +1,14 @@
 import ATMUsageCard from "./ATMUsageCard";
 import EPOSUsageCard from "./EPOSUsageCard";
 import LoadingIcon from "./LoadingIcon";
+import NoResults from "./NoResults";
 
 const FinancialData = ({data}) => {
     if (data == null){
         return <LoadingIcon/>
     }
-    if (data.length == 0) {
-        return <p>No records found!</p>
+    if (data.length === 0) {
+        return <NoResults />
     }
     return ( 
         <div className="overviewCardInfo">
