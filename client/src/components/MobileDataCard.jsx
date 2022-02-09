@@ -1,8 +1,9 @@
 import CallInfoCard from "./CallInfoCard";
+import LoadingIcon from "./LoadingIcon";
 
 const MobileDataCard = ({data}) => {
     if (data == null){
-        return <p>Loading...</p>
+        return <LoadingIcon/>
     }
     if (data.length == 0) {
         return <p>No records found!</p>
