@@ -3,7 +3,7 @@ const EPOSUsageCard = ({data}) => {
     let transactionDate = new Date(data.eposTimestamp).toString();
 
     return ( 
-        <div>
+        <div className="transactionCard">
             <p>Date of Transaction: {transactionDate}</p>
             <p>Amount: {data.epostAmount}</p>
             <p>EPOS ID: {data.eposId}</p>

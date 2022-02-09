@@ -3,7 +3,7 @@ const ATMUsageCard = ({data}) => {
     let transactionDate = new Date(data.timestamp).toString();
 
     return ( 
-        <div>
+        <div className="financialCard">
 
                 <p>Date of Transaction: {transactionDate}</p>
                 <p>Type of Transaction: {data.type}</p>

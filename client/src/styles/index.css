@@ -192,6 +192,114 @@ a:active {
     margin-right: 40px;
 }
 
+.mainContentWrapper .vehicleDataWrapper {
+   margin-left: 30px;
+}
+
+.mainContentWrapper .mobileDataWrapper {
+    margin-left: 30px;
+ }
+
+.mainContentWrapper .vehicleDataCard {
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 20px;
+ }
+
+ .mainContentWrapper .mobileDataCard {
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 20px;
+ }
+
+ .mainContentWrapper .financialDataCard {
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 20px;
+ }
+
+
+ .mainContentWrapper .financialCardData {
+    font-size: 19px;
+
+ }
+
+ .mainContentWrapper .mobileCardData {
+    font-size: 19px;
+
+ }
+
+ .mainContentWrapper .vehicleCardWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+
+ }
+
+ .mainContentWrapper .mobileCardWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+
+ }
+
+ .mainContentWrapper .financialCardWrapper {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr;
+    gap: 25px; */
+
+ }
+
+ .mainContentWrapper .transactionCardWrapper {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr;
+    gap: 25px; */
+
+ }
+    .mainContentWrapper .transactionCard {
+    
+        background-color: rgba(0, 0, 0, 0.05);
+        padding-right: 20px;
+        border-radius: 8px;
+        padding: 40px;
+        margin-bottom: 30px;
+     }
+
+     .mainContentWrapper .vehicleCard {
+    
+        background-color: rgba(0, 0, 0, 0.05);
+        padding-right: 20px;
+        border-radius: 8px;
+        padding: 40px;
+        margin-bottom: 30px;
+     }
+
+     .mainContentWrapper .financialCard {
+    
+        background-color: rgba(0, 0, 0, 0.05);
+        padding-right: 20px;
+        border-radius: 8px;
+        padding: 40px;
+        margin-bottom: 30px;
+     }
+ .mainContentWrapper .mobileCard {
+    
+    background-color: rgba(0, 0, 0, 0.05);
+    padding-right: 20px;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+ }
+
 .mainContentWrapper .overviewCard .overviewCardInfo {
     display: flex;
     flex-direction: column;

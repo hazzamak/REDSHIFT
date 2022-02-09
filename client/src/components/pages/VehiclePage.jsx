@@ -29,9 +29,9 @@ const VehiclePage = () => {
 
          <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
             <h1>Vehicle Details Page</h1>
-        {
+        <div className="vehicleDataWrapper">
             <VehicleData data={data} />
-        }
+        </div>
            
     </div>
      );
