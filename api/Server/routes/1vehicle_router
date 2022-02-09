@@ -54,13 +54,13 @@ const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(se
 router.get("/get/other",function(req, res){
     //Using a CRUD query here is the simplest way to get by id
     console.log(req.body);
-    sequelize.query("SELECT * FROM bank_tables WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
+    sequelize.query("SELECT * FROM vehicle_table WHERE " + req.body.column +" = '"+ req.body.data +"'" ,{
 
         type: sequelize.QueryTypes.SELECT
     }).then(response=>{
         res.status(200).json({
             status: 1,
-            message: "Bank found",
+            message: "Vehicle found",
             data: response
         });
         }).catch(error=>{
