@@ -30,26 +30,18 @@ const InputField = ({setQuery}) => {
     if(choice==="fullName"){
       data = {
         forenames: first,
-        surname: second
+        surname: second,
+        message: `Showing results for ${first} ${second}`
       }
     } else{
       data = {
         column: query,
-        data: first
+        data: first,
+        message: `Showing results for ${first}`
       }
     }
 
-    if(choice==="name"){
-      message = {
-        forenames: first,
-        surname: second
-      }
-    } else{
-      message = {
-        column: query,
-        data: first
-      }
-    }
+   
 
 
     setQuery(data);

@@ -8,7 +8,7 @@ const SearchResultWrapper = ({items, loading, query, message}) => {
 console.log(query);
     return ( 
         <>
-            <h2 className="searchResultsHeader">Search results for {message}</h2>
+            <h2 className="searchResultsHeader">{query.message}</h2>
             <div className="resultsWrapper">
                 {items.map((item, index) => {
                     return <SearchResultCard key={index} data={item}/>

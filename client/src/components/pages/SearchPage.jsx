@@ -35,26 +35,6 @@ const SearchPage = ({query}) => {
         }
     },[query]);
 
-    useEffect(() => {
-        if (isMounted.current) {
-            console.log("Fetching...");
-            let message="";
-            if (query.column===undefined) {
-                message="${query.forenames} ${query.surname}"
-            } else {
-                message="${query.column} ${query.data}"
-            }
-            axios.get(message)
-                .then(response => {
-                    setMessage(response.data.message);
-                    setLoading(true);
-                    })
-                .catch(error => console.log(error));
-        } else {
-            isMounted.current = true;
-        }
-    },[query]);
-
 
 
 
