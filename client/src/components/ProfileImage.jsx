@@ -4,7 +4,7 @@ const ProfileImage = ({fakePerson}) => {
         return <p>Loading</p>
     }
     return ( 
-        <img src={fakePerson.picture.large} alt="profile"/>
+        <img className="overviewProfileImage" src={fakePerson.picture.large} alt="profile"/>
 
      );
 }

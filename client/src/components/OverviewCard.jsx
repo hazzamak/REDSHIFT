@@ -1,12 +1,16 @@
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import ProfileImage from "./ProfileImage";
+import MaleIcon from "../assets/male.svg"
+import FemaleIcon from "../assets/female.svg"
+import CalendarIcon from "../assets/calendar.svg"
+import LocationIcon from "../assets/location.svg"
+import HouseIcon from "../assets/house.svg"
 
 
 const OverviewCard = ({data}) => {
 
   const [fakePerson, setFakePerson] = useState(null);
-  const isMounted = useRef(false);
 
   useEffect(() => {
     axios
@@ -29,11 +33,29 @@ const OverviewCard = ({data}) => {
                 {data.forenames} {data.surname}
             </h4>
            <div className="overviewCardData"> 
-                <p>{data.dateOfBirth}</p>
-                <p>{data.sex}</p>
-                <p>{data.placeOfBirth}</p>
+                <div className="overviewData-iconWrapper">
+                  <img className="overviewIcon" src={CalendarIcon} alt="icon" />
+                  <p>{data.dateOfBirth}</p>
+                </div>
+
+                <div className="overviewData-iconWrapper">
+                  <img className="overviewIcon" src={data.sex === "Male" ? MaleIcon : FemaleIcon} alt="icon" />
+                  <p>{data.sex}</p>
+                </div>
+
+                <div className="overviewData-iconWrapper">
+                  <img className="overviewIcon" src={HouseIcon} alt="icon" />
+                  <p>{data.placeOfBirth}</p>
+                </div>
             </div>
-            <p>{data.homeAddress}</p>
+            <div>
+              <div className="overviewData-iconWrapper">
+                <img className="overviewIcon" src={LocationIcon} alt="icon" />
+                <p>{data.homeAddress}</p>
+              </div>
+            </div>
+            
+            
           </div>
         
       </div>
