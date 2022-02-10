@@ -86,14 +86,10 @@ Expected json body being sent:
 router.get("/get/other", fnc.citizenGetByOther);
 //===================================================
 
-//===================================================
 //Update
 router.put("/update", fnc.citizenUpdate);
 //===================================================
 
-
-
-//===================================================
 //Destroy/ Delete/ Remove/ Exterminate
 
 router.delete("/citizen/:id", fnc.citizenDelete);
