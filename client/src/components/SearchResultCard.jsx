@@ -15,7 +15,7 @@ const SearchResultCard = ({data}) => {
                     <h4>{data.forenames} {data.surname}</h4>
                     <div className="profileInfo-item">
                         <img src={MaleIcon} alt="Icon"/>
-                        <p>{data.sex}</p>
+                        <p>{data.sex === undefined ? 'Unknown' : data.sex}</p>
                     </div>
                     <div className="profileInfo-item">
                         <img src={CalendarIcon} alt="Icon"/>

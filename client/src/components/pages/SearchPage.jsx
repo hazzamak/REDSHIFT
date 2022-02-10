@@ -18,9 +18,11 @@ const SearchPage = ({query}) => {
             setDisplayImage(false);
             setLoading(true);
             let url="";
-            if (query.column===undefined) {
+            if ('forenames' in query) {
                 url=`http://localhost:3300/get/name/${query.forenames}/${query.surname}`
-            } else {
+            } else if ('numberPlate' in query) {
+                url=`http://localhost:3300/vehicle/numberplate/${query.numberPlate}`
+            }else {
                 url=`http://localhost:3300/get/other/${query.column}/${query.data}`
             }
             axios.get(url)
