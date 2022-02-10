@@ -65,7 +65,7 @@ describe('Tasks API',()=>{
 
                     expect(info).to.include.keys("longitude");
                     //console.log(info.longitude);
-                    expect(info.longitude).to.be.a("double");
+                    expect(info.longitude).to.be.a("string");
 
 
 
