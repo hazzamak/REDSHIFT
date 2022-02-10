@@ -23,7 +23,7 @@ app.use(express.json());
 app.use("/", citizenRouter);
 app.use("/vehicle", vehicleRouter);
 app.use("/bank", financialRouter);
-app.use("/mobile", financialRouter);
+app.use("/mobile", mobileRouter);
 
 const server = app.listen(process.env.PORT || "3300", () => {
     console.log(`Server booted up successfully, on PORT: ${server.address().port}`);

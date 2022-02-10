@@ -7,6 +7,8 @@ const MobileDataCard = ({data, loading}) => {
 
     const[ filterTerm, setFilterTerm ] = useState(null);
 
+    console.log(data[0]);
+
     if (loading){
         return <LoadingIcon/>
     }
@@ -18,8 +20,8 @@ const MobileDataCard = ({data, loading}) => {
         <div className="mobileCardInfo">
            
                <h2>
-                {data[0].forenames} {data[0].surname}
-            </h2>
+                    {data[0].forenames} {data[0].surname}
+                </h2>
             
                 <div className="mobileCardData">
                     <p>{data[0].dateOfBirth}</p>
