@@ -17,7 +17,7 @@ const MobileDataPage = () => {
 
     useEffect(() => {
       setLoading(true);
-        axios.get(`http://localhost:3300/get/mobile/name/${forenames}/${surname}/${dateOfBirth}`)
+        axios.get(`http://localhost:3300/mobile/name/${forenames}/${surname}/${dateOfBirth}`)
              .then((response) => {
                 setData(response.data.data);
                 setLoading(false);

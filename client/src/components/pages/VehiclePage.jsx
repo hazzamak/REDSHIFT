@@ -17,7 +17,7 @@ const VehiclePage = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`http://localhost:3300/get/vehicle/name/${forenames}/${surname}/${dateOfBirth}`)
+        axios.get(`http://localhost:3300/vehicle/name/${forenames}/${surname}/${dateOfBirth}`)
              .then((response) => {
                 setData(response.data.data);
                 setLoading(false);

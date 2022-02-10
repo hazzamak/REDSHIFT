@@ -14,7 +14,7 @@ const FinancialPage = () => {
 
         axios
         .get(
-            `http://localhost:3300/get/bank/name/${forenames}/${surname}/${dateOfBirth}`
+            `http://localhost:3300/bank/name/${forenames}/${surname}/${dateOfBirth}`
         )
         .then((response) => {
           setData(response.data.data);
