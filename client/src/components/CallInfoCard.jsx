@@ -14,7 +14,7 @@ const CallInfoCard = ({data}) => {
             <p>Tower Longitude: {data.longitude}</p>
             <p>----------------------------------------------</p>
         </div>
-     );
+    );
 }
- 
+
 export default CallInfoCard;
