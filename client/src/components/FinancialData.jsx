@@ -1,8 +1,12 @@
 import ATMUsageCard from "./ATMUsageCard";
 import EPOSUsageCard from "./EPOSUsageCard";
+import { useState } from "react";
 
 const FinancialData = ({data}) => {
-    if (data == null){
+
+    const [filterTerm, setFilterTerm] = useState(null);
+
+    if (data === null){
         return <p>Loading...</p>
     }
     if (data.length == 0) {
@@ -25,7 +29,16 @@ const FinancialData = ({data}) => {
                     <p>Sort Code: {data[0].sortCode}</p>
                     <br></br>
                     <h3>ATM Usage</h3>
-                    {data.map((atmUsage, index) =>{
+                    <input type='text' placeholder="Filter by..." onChange={(event) =>{
+                        setFilterTerm(event.target.value)
+                    }}/>
+                    {data.filter((atmUsage) => {
+                        if(filterTerm === null){
+                            return atmUsage;
+                        }else if(atmUsage.timestamp.toLowerCase().includes(filterTerm.toLowerCase())) {
+                            return atmUsage;
+                        }
+                    }).map((atmUsage, index) =>{
                         return <ATMUsageCard key={index} data={atmUsage}/>
                     })}
                     <br></br>

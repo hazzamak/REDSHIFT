@@ -17,23 +17,22 @@ const FinancialPage = () => {
             `http://localhost:3300/get/bank/name/${forenames}/${surname}/${dateOfBirth}`
         )
         .then((response) => {
-          setData(response.data.data);
+            setData(response.data.data);
         })
         .catch((error) => console.log(error));
-        
-  }, []);
+    }, []);
 
     return ( 
         <div className="mainContentWrapper">
 
-         <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
-            <h1>Financial Details Page</h1>
-        {
-            <FinancialData data={data} />
-        }
+            <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
+                <h1>Financial Details Page</h1>
+            {
+                <FinancialData data={data} />
+            }
            
-    </div>
-     );
+        </div>
+    );
 }
  
 export default FinancialPage;
