@@ -26,10 +26,10 @@ const FinancialPage = () => {
         <div className="mainContentWrapper">
 
             <Menu forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>
-                <h1>Financial Details Page</h1>
-            {
-                <FinancialData data={data} />
-            }
+            <h1>Financial Details</h1>
+        {
+            <FinancialData data={data} />
+        }
            
         </div>
     );
