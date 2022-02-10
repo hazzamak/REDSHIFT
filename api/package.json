@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": " /Server/test/unit.js ",
+    "test": " /Server/test/unit.js  --timeout 100000000",
     "dev": "npx nodemon server/server.js",
     "start-dev":"cross-env NODE_ENV=development nodemon server.js"
   },

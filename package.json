@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "chai-json-equal": "^0.0.1",
     "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "should": "^13.2.3"
   }
 }
