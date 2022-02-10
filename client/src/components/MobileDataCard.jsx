@@ -1,8 +1,12 @@
+import { useState } from "react";
 import CallInfoCard from "./CallInfoCard";
 import LoadingIcon from "./LoadingIcon";
 import NoResults from "./NoResults";
 
 const MobileDataCard = ({data, loading}) => {
+
+    const[ filterTerm, setFilterTerm ] = useState(null);
+
     if (loading){
         return <LoadingIcon/>
     }
@@ -29,11 +33,20 @@ const MobileDataCard = ({data, loading}) => {
                     </div>
                     <br></br>
                     <h3>Called History</h3>
-                    <div className="mobileCardWrapper">
-                        {data.map((callInfo, index) => {
-                        return <CallInfoCard key={index} data={callInfo}/>
+                    <input type='text' placeholder="Filter by date" onChange={(event) =>{
+                        setFilterTerm(event.target.value)
+                    }}/>
+                    {data.filter((calls) => {
+                        if(filterTerm ===null){
+                            return calls;
+                        }else if(calls.timestamp.toLowerCase().includes(filterTerm.toLowerCase())) {
+                            return calls;
+                        }
+                    })
+                    .map((calls, index) => {
+                        return <CallInfoCard key={index} data={calls}/>
                     })}
-                    </div>
+                    
                 </div>
         </div>
      );

@@ -1,8 +1,12 @@
 import VehicleCard from "./VehicleCard";
 import LoadingIcon from "./LoadingIcon";
 import NoResults from "./NoResults";
+import { useState } from "react";
 
 const VehicleData = ({data, loading}) => {
+
+    const[ filterTerm, setFilterTerm ] = useState(null);
+
     if (loading){
         return <LoadingIcon/>
     }
@@ -31,11 +35,20 @@ const VehicleData = ({data, loading}) => {
                     <br></br>
                     <div>
                     <h3>ANPR Details</h3>
-                    <div className="vehicleCardWrapper">
-                    {data.map((anprData, index) => {
-                        return <VehicleCard key={index} data={anprData}/>
+                    <input type='text' placeholder="Filter by date" onChange={(event) =>{
+                        setFilterTerm(event.target.value)
+                    }}/>
+                    {data.filter((sightings) => {
+                        if(filterTerm ===null){
+                            return sightings;
+                        }else if(sightings.timestamp.toLowerCase().includes(filterTerm.toLowerCase())) {
+                            return sightings;
+                        }
+                    })
+                    .map((sightings, index) => {
+                        return <VehicleCard key={index} data={sightings}/>
                     })}
-                    </div>
+                    
                     </div>
                 </div>
         </div>

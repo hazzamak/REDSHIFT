@@ -6,8 +6,6 @@ import NoResults from "./NoResults";
 
 const FinancialData = ({data}) => {
 
-    const [filterTerm, setFilterTerm] = useState(null);
-
     if (data == null){
         return <LoadingIcon/>
     }
@@ -32,28 +30,20 @@ const FinancialData = ({data}) => {
                        <p>Sort Code: {data[0].sortCode}</p>
                     </div>
                     <br></br>
-                    <div className="financialCardWrapper">
-                    <h3>ATM Usage</h3>
-                    <input type='text' placeholder="Filter by..." onChange={(event) =>{
-                        setFilterTerm(event.target.value)
-                    }}/>
-                    {data.filter((atmUsage) => {
-                        if(filterTerm === null){
-                            return atmUsage;
-                        }else if(atmUsage.timestamp.toLowerCase().includes(filterTerm.toLowerCase())) {
-                            return atmUsage;
-                        }
-                    }).map((atmUsage, index) =>{
-                        return <ATMUsageCard key={index} data={atmUsage}/>
-                    })}
-                    </div>
-                    <br></br>
                     <div className="transactionCardWrapper">
                     <h3>EPOS Transactions</h3>
                     {data.map((eposUsage, index) =>{
                         return <EPOSUsageCard key={index} data={eposUsage}/>
                     })}
                     </div>
+                    <div className="financialCardWrapper">
+                        <br></br>
+                    <h3>ATM Usage</h3>
+                    {data.map((atmUsage, index) =>{
+                        return <ATMUsageCard key={index} data={atmUsage}/>
+                    })}
+                    </div>
+                   
                 </div>
         
         </div>
