@@ -1,37 +1,32 @@
-'use strict';
-
+"use strict";
 
 //===================================================
 //Middleware
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const Sequelize = require("sequelize");
-const path = require('path');
-const fnc = require('../controller/citizenController');
+const path = require("path");
+const fnc = require("../controller/citizenController");
 //===================================================
 
 //Declaring connection details from the env file
-const env = require('../db/env.js');
+const env = require("../db/env.js");
 
 // const connection = require('../db/index.js');
 // const sequelize = require(path.join("../db/index.js"))(Sequelize.DataTypes);
-
 
 //Needs to be fixed, model is at the bottom for the moment
 //Declaring a variable to store the model details
 //const {Citizen} = require('../model/citizens.js');
 
-
 //===================================================
 //DB connection stored as sequelize, to be moved to own file
-const sequelize = new Sequelize(env.database,env.username, env.password,{
-    host : env.host,
+const sequelize = new Sequelize(env.database, env.username, env.password, {
+    host: env.host,
     port: env.port,
     logging: console.log,
-    dialect:'mysql',
-    
+    dialect: "mysql",
 }); // by using sequelize a db connection has been made
-
 
 // Not needed, will be moved to a test folder in db and not used in final program
 
@@ -50,20 +45,15 @@ const Citizen = require(path.join("../model/citizens.js"))(sequelize, Sequelize.
 
 //===================================================
 
-
-
 //===================================================
-
-
-
 
 //===================================================
 //Creating new citizen
-//Not needed in the current specification 
-router.post("/citizen",fnc.citizenCreate);
+//Not needed in the current specification
+router.post("/citizen", fnc.citizenCreate);
 //===================================================
 //Get all
-//Not needed in the current specification 
+//Not needed in the current specification
 router.get("/getall", fnc.citizenGetAll);
 //===================================================
 
@@ -79,7 +69,7 @@ router.get("/get/id", fnc.citizenGetById);
 
 //Get by forenames and surname
 
-router.get("/get/name", fnc.citizenGetByName);
+router.get("/get/name/:forenames/:surname", fnc.citizenGetByName);
 
 //===================================================
 /* This query takes data in a json body then does a search with an AND 
@@ -94,11 +84,10 @@ Expected json body being sent:
 }
 */
 
-router.get("/get/other", fnc.citizenGetByOther);
+router.get("/get/other/:column/:data", fnc.citizenGetByOther);
 
+router.get("/get/overview/:forenames/:surname/:dateOfBirth", fnc.citizenGetSingle);
 
-
-r
 //===================================================
 
 //===================================================
@@ -106,14 +95,11 @@ r
 router.put("/update", fnc.citizenUpdate);
 //===================================================
 
-
-
 //===================================================
 //Destroy/ Delete/ Remove/ Exterminate
 
 router.delete("/citizen/:id", fnc.citizenDelete);
 //===================================================
-
 
 //===================================================
 //Get by query in bank
@@ -140,11 +126,6 @@ router.delete("/citizen/:id", fnc.citizenDelete);
 //===================================================
 //
 
-
-
-
-
-
-//Fix to error: TypeError: Router.use() requires a middleware function but got a Object 
-//When using express.Router() this is a requirement 
+//Fix to error: TypeError: Router.use() requires a middleware function but got a Object
+//When using express.Router() this is a requirement
 module.exports = router;

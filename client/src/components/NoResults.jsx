@@ -5,7 +5,7 @@ const NoResults = () => {
         <div className="noResultsWrapper">
             <img src={image} alt="No results" />
             <h1>No matching results</h1>
-            <p>There weren't any matching results with your recent query, try searching for something else.</p>
+            <p>There wasn't any matching results with your recent query, try searching for something else.</p>
         </div>
      );
 }
