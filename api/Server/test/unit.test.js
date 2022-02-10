@@ -25,6 +25,9 @@ const chai = require('chai');
 
 const chaiHttp = require('chai-http');
 const chaiJson = require('chai-json-equal');
+const Sequelize = require('sequelize');
+
+
 const server = require('../server.js');
 //const jp = require('jsonpath');
 
@@ -54,7 +57,18 @@ describe('Tasks API',()=>{
                 
                 
                 body.map((info)=>{
-                    expect(info).to.include.keys("colour", "make", "vehicleRegistrationNo");
+                    expect(info).to.include.keys("colour");
+                    expect(info.colour).to.be.a('string');
+
+                    expect(info).to.include.keys("model");
+                    expect(info.model).to.be.a('string');
+
+                    expect(info).to.include.keys("longitude");
+                    //console.log(info.longitude);
+                    expect(info.longitude).to.be.a("double");
+
+
+
 
                 });
                 
