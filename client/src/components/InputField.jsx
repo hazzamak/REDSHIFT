@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 
-
 const InputField = ({setQuery}) => {
 
   const [choice, setChoice]= useState("fullName");
@@ -28,31 +27,38 @@ const InputField = ({setQuery}) => {
     let query = document.querySelector("#selection").value;
     let data = {};
 
-    if(choice==="fullName"){
-      data = {
-        forenames: first,
-        surname: second,
-        message: `Showing results for ${first} ${second}`
-      }
+    if(first===""){
+      alert("Please provide a search term")
     } else{
-      data = {
-        column: query,
-        data: first,
-        message: `Showing results for ${first}`
+
+    if(choice==="fullName"){
+        data = {
+          forenames: first,
+          surname: second,
+          message: `Showing results for ${first} ${second}`
+        }
+        
+      } else if (choice === "numberPlate") {
+        data = {
+          numberPlate: first,
+          message: `Showing number plate results for ${first}`
+        }
+      } else{
+        data = {
+          column: query,
+          data: first,
+          message: `Showing results for ${first}`
+        }
       }
-    }
 
-   
+      setQuery(data);
 
-
-    setQuery(data);
-
-    // Remove value in fields
-    document.querySelector("#searchField").value = "";
-    document.querySelector("#surnameField").value = "";
-    navigate("/")
-
-  };
+      // Remove value in fields
+      document.querySelector("#searchField").value = "";
+      document.querySelector("#surnameField").value = "";
+      navigate("/")
+      }
+    };
 
     return ( 
         <form className="searchForm" onSubmit={(event)=> handleSubmit(event)}>
@@ -65,6 +71,7 @@ const InputField = ({setQuery}) => {
             <option value="dateOfBirth">Date of Birth</option>
             <option value="homeAddress">Home Address</option>
             <option value="placeOfBirth">Place of Birth</option>
+            <option value="numberPlate">Number Plate</option>
           </select>
           <button type="submit">Search</button>
         </form>

@@ -11,14 +11,14 @@ const Menu = () => {
                 to={`/overview/${forenames}/${surname}/${dateOfBirth}`} 
                 className={({isActive}) => "menuItem" + (isActive ? " active" : "")}
                 >Overview</NavLink>
-            <NavLink 
+            {/* <NavLink 
                 to={`/biographical/${forenames}/${surname}/${dateOfBirth}`} 
                 className={({isActive}) => "menuItem" + (isActive ? " active" : "")}
-                >Biographical</NavLink>
-            <NavLink 
+                >Biographical</NavLink> */}
+            {/* <NavLink 
                 to={`/associates/${forenames}/${surname}/${dateOfBirth}`} 
                 className={({isActive}) => "menuItem" + (isActive ? " active" : "")}
-                >Associates</NavLink>
+                >Associates</NavLink> */}
             <NavLink 
                 to={`/bank/name/${forenames}/${surname}/${dateOfBirth}`} 
                 className={({isActive}) => "menuItem" + (isActive ? " active" : "")}

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 // ===================================================
 // Middleware
 const Sequelize = require("sequelize"); // Sequelize is not an object, its about the details of the connection to the db
@@ -9,39 +9,40 @@ const Sequelize = require("sequelize"); // Sequelize is not an object, its about
 // Creating model and exporting it, this data matches the data in the mysql database
 
 module.exports =function(sequelize, DataTypes){
-return  sequelize.define("citizen",{
-    citizenID:{
+return  sequelize.define("cellTower",{
+    cellTowerId:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
 
         autoIncrement: true
-
     },
-    forenames:{
+    operator:{
         type: Sequelize.STRING
        // defaultValue: "Unkown"
     },
-    surname:{
+    type:{
         type: Sequelize.STRING
     },
-    homeAddress:{
-        type: Sequelize.STRING
+    latitude:{
+        type: Sequelize.DECIMAL
     },
-    dateOfBirth:{
-        type: Sequelize.STRING,
+    longitude:{
+        type: Sequelize.DECIMAL,
 
-    },
-    placeOfBirth:{
-        type: Sequelize.STRING
-    },
-    sex:{
-        type: Sequelize.STRING
-    }},{
-        modelName: "Citizen",
+    }
+    },{
+        modelName: "CellTower", //This should match the const in the import below
         timestamps: false,
         freezeTableName: true,
 
 });
 }
+// ===================================================
+// Import code for queries
+// To export copy and paste into routes:
+
+// const CellTower = require(path.join("../model/cellTowers.js"))(sequelize, Sequelize.DataTypes);
+// name differs from database name, Tower is capitalized, could cause confusion 
+
 // ===================================================

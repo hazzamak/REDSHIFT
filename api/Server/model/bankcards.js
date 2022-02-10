@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 // ===================================================
 // Middleware
 const Sequelize = require("sequelize"); // Sequelize is not an object, its about the details of the connection to the db
@@ -9,8 +9,8 @@ const Sequelize = require("sequelize"); // Sequelize is not an object, its about
 // Creating model and exporting it, this data matches the data in the mysql database
 
 module.exports =function(sequelize, DataTypes){
-return  sequelize.define("citizen",{
-    citizenID:{
+return  sequelize.define("bankcard",{
+    bankCardId:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
@@ -18,30 +18,34 @@ return  sequelize.define("citizen",{
         autoIncrement: true
 
     },
-    forenames:{
-        type: Sequelize.STRING
+    cardNumber:{
+        type: Sequelize.INTEGER
        // defaultValue: "Unkown"
     },
-    surname:{
+    sortCode:{
         type: Sequelize.STRING
     },
-    homeAddress:{
-        type: Sequelize.STRING
+    bankAccountId:{
+        type: Sequelize.INTEGER
     },
-    dateOfBirth:{
-        type: Sequelize.STRING,
+    accountNumber:{
+        type: Sequelize.INTEGER,
 
     },
-    placeOfBirth:{
+    bank:{
         type: Sequelize.STRING
-    },
-    sex:{
-        type: Sequelize.STRING
-    }},{
-        modelName: "Citizen",
+    }
+    },{
+        modelName: "Bankcard", //This should match the const in the import below
         timestamps: false,
         freezeTableName: true,
 
 });
 }
+// ===================================================
+// Import code for queries
+// To export copy and paste into routes:
+
+// const Bankcard = require(path.join("../model/bankcards.js"))(sequelize, Sequelize.DataTypes);
+
 // ===================================================

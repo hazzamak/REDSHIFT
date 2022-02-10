@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 // ===================================================
 // Middleware
 const Sequelize = require("sequelize"); // Sequelize is not an object, its about the details of the connection to the db
@@ -9,39 +9,32 @@ const Sequelize = require("sequelize"); // Sequelize is not an object, its about
 // Creating model and exporting it, this data matches the data in the mysql database
 
 module.exports =function(sequelize, DataTypes){
-return  sequelize.define("citizen",{
-    citizenID:{
+return  sequelize.define("anprcamera",{
+    anprId:{
         type: Sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-
-        autoIncrement: true
 
     },
-    forenames:{
+    streetName:{
         type: Sequelize.STRING
        // defaultValue: "Unkown"
     },
-    surname:{
-        type: Sequelize.STRING
+    latitude:{
+        type: Sequelize.DECIMAL
     },
-    homeAddress:{
-        type: Sequelize.STRING
-    },
-    dateOfBirth:{
-        type: Sequelize.STRING,
-
-    },
-    placeOfBirth:{
-        type: Sequelize.STRING
-    },
-    sex:{
-        type: Sequelize.STRING
-    }},{
-        modelName: "Citizen",
+    longitude:{
+        type: Sequelize.INTEGER
+    }
+    },{
+        modelName: "ANPRCamera", //This should match the const in the import below
         timestamps: false,
         freezeTableName: true,
 
 });
 }
+// ===================================================
+// Import code for queries
+// To export copy and paste into routes:
+
+// const ANPRCamera = require(path.join("../model/anprCameras.js"))(sequelize, Sequelize.DataTypes);
+//Here Camera is capitalized unlike the database, could cause confusion
 // ===================================================
