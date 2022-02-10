@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 
-
 const InputField = ({setQuery}) => {
 
   const [choice, setChoice]= useState("fullName");
@@ -28,21 +27,28 @@ const InputField = ({setQuery}) => {
     let query = document.querySelector("#selection").value;
     let data = {};
 
+    if(first===""){
+      alert("Please provide a search term")
+    } else{
+
     if(choice==="fullName"){
       data = {
         forenames: first,
         surname: second,
         message: `Showing results for ${first} ${second}`
       }
+      
     } else{
       data = {
         column: query,
         data: first,
         message: `Showing results for ${first}`
       }
+
+      
     }
 
-   
+  
 
 
     setQuery(data);
@@ -51,7 +57,7 @@ const InputField = ({setQuery}) => {
     document.querySelector("#searchField").value = "";
     document.querySelector("#surnameField").value = "";
     navigate("/")
-
+    }
   };
 
     return ( 
