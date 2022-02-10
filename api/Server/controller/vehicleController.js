@@ -55,3 +55,23 @@ exports.vehicleGetByName = (req, res) => {
             console.log(error);
         });
 };
+
+// Searching by numberplate
+exports.searchByNumberPlate = (req, res) => {
+    //Using a CRUD query here is the simplest way to get by id
+    console.log(req.params);
+    sequelize
+        .query(`SELECT forenames, surname, address AS homeAddress, dateOfBirth FROM vehicleRegistration WHERE vehicleRegistrationNo ='${req.params.numberPlate}'`, {
+            type: sequelize.QueryTypes.SELECT,
+        })
+        .then((response) => {
+            res.status(200).json({
+                status: 1,
+                message: "Vehicle found",
+                data: response,
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};

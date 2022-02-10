@@ -52,6 +52,7 @@ const VehicleTable = require(path.join("../model/modelViews/vehicleView.js"))(se
 //===================================================
 //Get by query
 router.get("/name/:forenames/:surname/:dateOfBirth", fnc.vehicleGetByName);
+router.get("/numberplate/:numberPlate", fnc.searchByNumberPlate);
 //===================================================
 
 //Fix to error: TypeError: Router.use() requires a middleware function but got a Object
