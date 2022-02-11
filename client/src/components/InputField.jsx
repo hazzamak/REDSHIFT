@@ -54,8 +54,8 @@ const InputField = ({setQuery}) => {
       setQuery(data);
 
       // Remove value in fields
-      document.querySelector("#searchField").value = "";
-      document.querySelector("#surnameField").value = "";
+      // document.querySelector("#searchField").value = "";
+      // document.querySelector("#surnameField").value = "";
       navigate("/")
       }
     };

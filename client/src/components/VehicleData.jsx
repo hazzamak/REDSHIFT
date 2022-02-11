@@ -35,7 +35,7 @@ const VehicleData = ({data, loading}) => {
                     <br></br>
                     <div>
                     <h3>ANPR Details</h3>
-                    <input type='text' placeholder="Filter by date" onChange={(event) =>{
+                    <input className="form-field" type='text' placeholder="Filter by date" onChange={(event) =>{
                         setFilterTerm(event.target.value)
                     }}/>
                     {data.filter((sightings) => {
