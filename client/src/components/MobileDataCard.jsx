@@ -35,7 +35,7 @@ const MobileDataCard = ({data, loading}) => {
                     </div>
                     <br></br>
                     <h3>Called History</h3>
-                    <input type='text' placeholder="Filter by date" onChange={(event) =>{
+                    <input className="form-field" type='text' placeholder="Filter by date" onChange={(event) =>{
                         setFilterTerm(event.target.value)
                     }}/>
                     {data.filter((calls) => {
